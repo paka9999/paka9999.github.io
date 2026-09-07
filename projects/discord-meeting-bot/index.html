@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>discord-meeting-bot · 강성주</title><meta name="description" content="디스코드 미팅 자동 녹음·전사·요약"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/projects/discord-meeting-bot/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/discord-meeting-bot/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/discord-meeting-bot/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="discord-meeting-bot · 강성주"><meta property="og:description" content="디스코드 미팅 자동 녹음·전사·요약"><meta property="og:url" content="https://paka9999.github.io/projects/discord-meeting-bot/"><meta property="og:image" content="https://paka9999.github.io/og.png"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/">강성주</a><nav class="nav-links" aria-label="Sections"><a href="/#reel">화면</a><a href="/#press">수상</a><a href="/#strengths">강점</a><a href="/#experience">참여 프로젝트</a><a href="/#ai">AI 활용</a><a href="/#projects">개인</a><a href="/timeline/">연혁</a></nav><div class="nav-actions"><a class="lang" href="/en/projects/discord-meeting-bot/" hreflang="en" aria-label="English" title="English">EN</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/#projects">← 홈으로</a><header class="detail-head"><p class="mono eyebrow">2026 · 개인 · 비공개</p><h1>discord-meeting-bot</h1><p class="lead">디스코드 미팅 자동 녹음·전사·요약</p><dl class="meta"><div><dt class="mono">역할</dt><dd>설계·구현 전부</dd></div><div><dt class="mono">기간</dt><dd>2026.07 – 2026.08</dd></div><div><dt class="mono">상태</dt><dd>실사용 중</dd></div><div><dt class="mono">스택</dt><dd>TypeScript, discord.js, Whisper, Claude API</dd></div><div><dt class="mono">링크</dt><dd class="dd-links"><a href="https://github.com/paka9999/discord-meeting-bot" target="_blank" rel="noopener">GitHub</a></dd></div></dl></header><div class="detail-grid"><div class="prose"><h2 id="배경">배경</h2>
+<p>디스코드 음성 채널에서 하는 회의는 끝나면 아무것도 남지 않습니다. 사람이 들어오면 알아서 녹음하고, 나가면 알아서 회의록을 남기는 봇을 만들었습니다.</p>
+<h2 id="동작">동작</h2>
+<ol>
+<li><code>/watch add &lt;음성채널&gt;</code>로 감시 채널을 등록합니다. 누가 입장하면 자동 참가해 녹음을 시작하고, 전원이 퇴장하면 종료합니다.</li>
+<li>참가자별 오디오 스트림을 분리 수신합니다. 화자 구분이 공짜로 됩니다. opus를 OGG로 무변환 저장합니다.</li>
+<li>Whisper로 전사하고, Claude가 요약·결정사항·액션아이템을 추출합니다.</li>
+<li>텍스트 채널에 요약 임베드와 회의록·전사록 파일을 게시하고, 설정 시 GitHub 저장소에 <code>meetings/YYYY/MM/*.md</code>로 커밋합니다. Contents API를 직접 호출해 clone이 필요 없습니다.</li>
+</ol>
+<h2 id="기술">기술</h2>
+<p>Node.js 22 + TypeScript, discord.js v14 + @discordjs/voice, prism-media v2. 특권 인텐트가 필요 없고, STT·요약 모델은 환경변수로 교체합니다.</p>
+<h2 id="상태">상태</h2>
+<p>회의록이 자동 커밋되는 저장소(meeting-notes)와 함께 실사용 중입니다.</p>
+</div><aside class="detail-aside"><p class="mono">요약</p><p class="aside-summary">음성 채널에 사람이 들어오면 자동 참가해 화자별 스트림을 녹음하고, Whisper 전사 → Claude 요약·결정사항·액션아이템 추출 → 채널 게시와 GitHub 회의록 커밋까지 자동으로.</p><ul class="aside-list"><li>참가자별 오디오 스트림 분리 수신으로 화자 구분이 공짜</li><li>opus→OGG 무변환 저장, GitHub Contents API로 clone 없이 커밋</li><li>STT·요약 모델은 환경변수로 교체</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="닫기">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/projects/shorts-factory/"><span class="mono">← 이전</span><b>shorts-factory</b></a><a class="right" href="/projects/remotedesk/"><span class="mono">다음 →</span><b>RemoteDesk</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 강성주</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume.pdf" target="_blank" rel="noopener">이력서 PDF</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

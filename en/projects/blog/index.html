@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>YATAV Company Blog (Next.js · PostgreSQL · EC2) · Seongju Kang</title><meta name="description" content="Built and deployed a self-hosted blog for company insights and case studies"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/en/projects/blog/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/blog/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/blog/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="YATAV Company Blog (Next.js · PostgreSQL · EC2) · Seongju Kang"><meta property="og:description" content="Built and deployed a self-hosted blog for company insights and case studies"><meta property="og:url" content="https://paka9999.github.io/en/projects/blog/"><meta property="og:image" content="https://paka9999.github.io/images/work/blog.jpg"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/en/">Seongju Kang</a><nav class="nav-links" aria-label="Sections"><a href="/en/#reel">Screens</a><a href="/en/#press">Awards</a><a href="/en/#strengths">Strengths</a><a href="/en/#experience">Work</a><a href="/en/#ai">AI</a><a href="/en/#projects">Personal</a><a href="/en/timeline/">Timeline</a></nav><div class="nav-actions"><a class="lang" href="/projects/blog/" hreflang="ko" aria-label="한국어" title="한국어">KO</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/en/#experience">← Home</a><header class="detail-head"><p class="mono eyebrow">2026 · work</p><h1>YATAV Company Blog<small>Next.js · PostgreSQL · EC2</small></h1><p class="lead">Built and deployed a self-hosted blog for company insights and case studies</p><dl class="meta"><div><dt class="mono">Role</dt><dd>Design, implementation, deployment</dd></div><div><dt class="mono">Period</dt><dd>2026</dd></div><div><dt class="mono">Status</dt><dd>Live</dd></div><div><dt class="mono">Stack</dt><dd>Next.js, TypeScript, PostgreSQL, Docker, nginx</dd></div><div><dt class="mono">Links</dt><dd class="dd-links"><a href="https://blog.yatavent.com" target="_blank" rel="noopener">blog.yatavent.com</a></dd></div></dl></header><div class="gallery n1"><figure><button type="button" class="zoom" aria-label="YATAV blog click to enlarge"><img src="/images/work/blog.jpg" alt="YATAV blog" loading="eager" decoding="async"></button></figure></div><div class="detail-grid"><div class="prose"><h2 id="what-i-built">What I built</h2>
+<p>The whole company blog: post list, categories, tags, search, an admin editor (TipTap), Docker image build and EC2 deployment, RDS PostgreSQL. Completed in eight PRs.</p>
+<h2 id="traps-recorded">Traps recorded</h2>
+<ul>
+<li><code>NEXT_PUBLIC_*</code> is baked in at build time, and standalone output does not serve <code>public/</code> at runtime. The Docker image copies public separately.</li>
+<li>The client IP that rate limiting sees depends on which position in the proxy header chain you trust. ALB and nginx both append a value, so the position our own proxy wrote is the one to trust.</li>
+<li>TipTap tables vanish without warning if the extension is missing, and descendant selectors add margins to <code>&lt;p&gt;</code> inside cells. <code>@tiptap/*</code> versions are pinned together.</li>
+</ul>
+</div><aside class="detail-aside"><p class="mono">Summary</p><p class="aside-summary">A Next.js + PostgreSQL blog deployed in Docker on EC2. TipTap editor, tags and categories, search, rate limiting. Documented traps around build-time env vars, standalone static files and proxy header trust.</p><ul class="aside-list"><li>NEXT_PUBLIC_* is build-time and standalone output does not serve public/ at runtime: copied separately into the image</li><li>Which position in the proxy header chain you trust decides the client IP that rate limiting sees</li><li>TipTap tables vanish silently without the extension: @tiptap/* versions pinned together</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="Close">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/en/projects/cost-dashboard/"><span class="mono">← Previous</span><b>Cloud Cost Reduction · Cost Dashboard</b></a><a class="right" href="/en/projects/aac-chatbot/"><span class="mono">Next →</span><b>University AAC Chatbot Backend</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 Seongju Kang</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume-en.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

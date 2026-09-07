@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>RemoteDesk · Seongju Kang</title><meta name="description" content="Control a Windows PC from a phone over WebRTC"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/en/projects/remotedesk/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/remotedesk/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/remotedesk/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="RemoteDesk · Seongju Kang"><meta property="og:description" content="Control a Windows PC from a phone over WebRTC"><meta property="og:url" content="https://paka9999.github.io/en/projects/remotedesk/"><meta property="og:image" content="https://paka9999.github.io/og.png"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/en/">Seongju Kang</a><nav class="nav-links" aria-label="Sections"><a href="/en/#reel">Screens</a><a href="/en/#press">Awards</a><a href="/en/#strengths">Strengths</a><a href="/en/#experience">Work</a><a href="/en/#ai">AI</a><a href="/en/#projects">Personal</a><a href="/en/timeline/">Timeline</a></nav><div class="nav-actions"><a class="lang" href="/projects/remotedesk/" hreflang="ko" aria-label="한국어" title="한국어">KO</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/en/#projects">← Home</a><header class="detail-head"><p class="mono eyebrow">2026 · personal · private</p><h1>RemoteDesk</h1><p class="lead">Control a Windows PC from a phone over WebRTC</p><dl class="meta"><div><dt class="mono">Role</dt><dd>Design and implementation</dd></div><div><dt class="mono">Period</dt><dd>2026.07 – 2026.08</dd></div><div><dt class="mono">Status</dt><dd>M3 complete</dd></div><div><dt class="mono">Stack</dt><dd>C#, .NET 9, WebRTC, H.264, Kotlin, Node.js</dd></div><div><dt class="mono">Links</dt><dd class="dd-links"><a href="https://github.com/paka9999/remotedesk" target="_blank" rel="noopener">GitHub</a></dd></div></dl></header><div class="detail-grid"><div class="prose"><h2 id="why">Why</h2>
+<p>I wanted to drive the PC in my room from the sofa with a phone. Existing remote desktops come with accounts, relay servers and heavy installs, so I built the minimum needed between my PC and my phone.</p>
+<h2 id="what-i-built">What I built</h2>
+<ul>
+<li><strong>Host</strong>: A .NET 9 library (RemoteDesk.Core), a WPF tray app, and a console CLI with diagnostic probes.</li>
+<li><strong>Signaling</strong>: A Node.js WebSocket relay that also serves the browser viewer on the same port.</li>
+<li><strong>Viewers</strong>: A Kotlin Android app and a browser viewer (the reference implementation).</li>
+<li><strong>Input</strong>: Direct touch (click where you press) and trackpad (relative movement). Tap is left click, long-press is right click, two fingers scroll, drag moves with the button held. Ctrl, Alt, Shift and Win stay latched until the next input.</li>
+</ul>
+<h2 id="decisions">Decisions</h2>
+<ul>
+<li><strong>Hardware H.264 + WebRTC</strong>: GPU encoding instead of software to keep latency down; video over the WebRTC media channel, input over the data channel.</li>
+<li><strong>One pipeline</strong>: Capture and encoding run once regardless of viewers, start when the first viewer connects and stop when the last leaves. An idle host uses no GPU.</li>
+<li>Settings live in <code>%APPDATA%\RemoteDesk\config.json</code>; command-line flags override them. Closing the window leaves the host in the tray.</li>
+</ul>
+<h2 id="measured">Measured</h2>
+<p>Local network, 2560×1440 source: 1920×1080 at 30fps, about 2.1 Mbps, zero packet loss, RTT 15–31 ms.</p>
+<h2 id="status">Status</h2>
+<p>M3: open a browser, enter a host id, see the PC and control it by touch. The browser viewer is the reference implementation; the Android viewer speaks the same protocol.</p>
+</div><aside class="detail-aside"><p class="mono">Summary</p><p class="aside-summary">Captures the desktop, encodes it with hardware H.264, streams it over WebRTC, and injects touch and keyboard input back as real mouse and keyboard events. A .NET 9 host (WPF/CLI), a Node signaling relay, a Kotlin Android viewer and a browser viewer.</p><ul class="aside-list"><li>Two input modes (direct touch and trackpad), long-press for right click, two-finger scroll, sticky modifier keys</li><li>One capture/encode pipeline regardless of viewer count; an idle host uses no GPU</li><li>Measured locally: 1080p 30fps · ~2.1 Mbps · RTT 15–31 ms · zero packet loss</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="Close">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/en/projects/discord-meeting-bot/"><span class="mono">← Previous</span><b>discord-meeting-bot</b></a><a class="right" href="/en/projects/myfan/"><span class="mono">Next →</span><b>myfan</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 Seongju Kang</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume-en.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

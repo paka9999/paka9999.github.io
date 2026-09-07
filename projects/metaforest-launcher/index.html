@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MetaForest 런처 (Electron · Windows / macOS) · 강성주</title><meta name="description" content="Windows·macOS 데스크톱 런처를 새로 만들고, 배포 채널을 CDN으로 옮겼습니다"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/projects/metaforest-launcher/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/metaforest-launcher/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/metaforest-launcher/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="MetaForest 런처 (Electron · Windows / macOS) · 강성주"><meta property="og:description" content="Windows·macOS 데스크톱 런처를 새로 만들고, 배포 채널을 CDN으로 옮겼습니다"><meta property="og:url" content="https://paka9999.github.io/projects/metaforest-launcher/"><meta property="og:image" content="https://paka9999.github.io/images/launcher/home.jpg"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/">강성주</a><nav class="nav-links" aria-label="Sections"><a href="/#reel">화면</a><a href="/#press">수상</a><a href="/#strengths">강점</a><a href="/#experience">참여 프로젝트</a><a href="/#ai">AI 활용</a><a href="/#projects">개인</a><a href="/timeline/">연혁</a></nav><div class="nav-actions"><a class="lang" href="/en/projects/metaforest-launcher/" hreflang="en" aria-label="English" title="English">EN</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/#experience">← 홈으로</a><header class="detail-head"><p class="mono eyebrow">2026 · 회사</p><h1>MetaForest 런처<small>Electron · Windows / macOS</small></h1><p class="lead">Windows·macOS 데스크톱 런처를 새로 만들고, 배포 채널을 CDN으로 옮겼습니다</p><dl class="meta"><div><dt class="mono">역할</dt><dd>설계·구현·배포 전부</dd></div><div><dt class="mono">기간</dt><dd>2026.06 – 2026.08</dd></div><div><dt class="mono">상태</dt><dd>운영 중</dd></div><div><dt class="mono">스택</dt><dd>Electron, TypeScript, S3 · CloudFront, GitHub Actions, NSIS</dd></div><div><dt class="mono">링크</dt><dd class="dd-links"><a href="https://www.metaforest.us" target="_blank" rel="noopener">metaforest.us</a></dd></div></dl></header><div class="gallery n3"><figure><button type="button" class="zoom" aria-label="런처 홈 확대해서 보기"><img src="/images/launcher/home.jpg" alt="런처 홈" loading="eager" decoding="async"></button><figcaption>홈. 실행 준비 완료</figcaption></figure><figure><button type="button" class="zoom" aria-label="런처 채팅 확대해서 보기"><img src="/images/launcher/chat.jpg" alt="런처 채팅" loading="eager" decoding="async"></button><figcaption>채팅 탭</figcaption></figure><figure><button type="button" class="zoom" aria-label="새 런처 확대해서 보기"><img src="/images/launcher/new-home.jpg" alt="새 런처" loading="eager" decoding="async"></button><figcaption>2026.08 CDN 이전 후 런처. 이전 런처 제거 안내</figcaption></figure><figure><button type="button" class="zoom" aria-label="설치 확대해서 보기"><img src="/images/launcher/install.jpg" alt="설치" loading="eager" decoding="async"></button><figcaption>클라이언트 설치 단계</figcaption></figure><figure><button type="button" class="zoom" aria-label="마이그레이션 안내 확대해서 보기"><img src="/images/launcher/migrate.jpg" alt="마이그레이션 안내" loading="eager" decoding="async"></button><figcaption>이전 런처 사용자에게 보이는 마이그레이션 안내</figcaption></figure></div><div class="detail-grid"><div class="prose"><h2 id="배경">배경</h2>
+<p>MetaForest는 Unity 클라이언트로 접속하는 메타버스 심리상담 플랫폼입니다. 기존 런처는 WPF(Windows 전용)였고, 상담사·내담자 역할별 기능이 런처에 없어 웹과 앱을 오가야 했습니다.</p>
+<h2 id="만든-것">만든 것</h2>
+<ul>
+<li>Windows + macOS 런처. 로그인(ID·카카오·네이버·구글·애플), 역할별 실기능 탭(채팅·상담 내역·상담실 예약·내담자 관리·AI 상담 내역), 홈 뉴스·공지.</li>
+<li>데스크톱 알림, 트레이 상주, 다국어 5종. 런처 세션을 게임 클라이언트에 주입해 재로그인 없이 실행합니다.</li>
+<li>다운로드 이어받기, Windows CI 빌드(GitHub Actions), 자동 업데이트 피드.</li>
+</ul>
+<h2 id="배포-채널-이전-202608">배포 채널 이전 (2026.08)</h2>
+<ol>
+<li>S3 버킷 + CloudFront 배포(cdn 서브도메인)를 구성했습니다.</li>
+<li>런처 다운로드 경로를 CDN으로 전환하고, 파일을 6분할해 병렬로 받은 뒤 평면 설치합니다.</li>
+<li>사용자 안내 프로그램을 만들고, 사이트 다운로드 버튼을 CDN 고정 이름으로 전환했습니다.</li>
+<li>런처에 이전 WPF 런처(MSI) 제거 기능을 넣어 사용자가 손대지 않아도 마이그레이션되게 했습니다.</li>
+</ol>
+<h2 id="트러블슈팅-업데이트가-가끔-실패하던-문제">트러블슈팅: 업데이트가 “가끔” 실패하던 문제</h2>
+<p>증상은 새 버전이 있는데 런처가 못 찾거나 낡은 파일을 받는 것이었습니다. 서버와 CDN 캐시를 먼저 의심했지만, 실제 원인 후보는 Electron <code>net.fetch</code>의 HTTP 캐시 무효화 누락이었습니다. 피드 요청에 캐시 무효화를 넣은 v1.0.4를 배포한 뒤 재현이 사라졌습니다. 이 과정에서 관련 PR 4건을 머지·배포·검증했습니다.</p>
+<h2 id="배운-것">배운 것</h2>
+<ul>
+<li>코드서명: EV 인증서는 SmartScreen에 이점이 없고(MS 공식), 한국 법인도 Azure Artifact Signing을 쓸 수 있으며 electron-builder가 이미 지원합니다.</li>
+<li>오브젝트 스토리지 업로드 함정: aws-cli v2의 체크섬 기본값 때문에 PutObject만 AccessDenied가 났고, <code>when_required</code>로 해결했습니다.</li>
+</ul>
+</div><aside class="detail-aside"><p class="mono">요약</p><p class="aside-summary">메타버스 상담 플랫폼 MetaForest의 Windows·macOS 런처. 로그인·역할별 실기능 탭·자동 업데이트·트레이 상주·다국어 5종을 갖췄고, 배포처를 S3 + CloudFront로 이전하며 6분할 병렬 다운로드와 이전 런처 마이그레이션을 넣었습니다.</p><ul class="aside-list"><li>데스크톱 알림·트레이 상주·다국어 5종·세션 주입 실행·다운로드 이어받기·Windows CI 빌드</li><li>S3 + CloudFront 이전, 6분할 병렬 다운로드, 이전 WPF 런처 제거 마이그레이션</li><li>업데이트 실패 원인을 net.fetch HTTP 캐시 무효화 누락으로 규명·수정 (v1.0.4)</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="닫기">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/projects/metaforest-early/"><span class="mono">← 이전</span><b>MetaForest 클라이언트: 출시부터 3.x까지</b></a><a class="right" href="/projects/metaforest-unity/"><span class="mono">다음 →</span><b>MetaForest Unity 클라이언트</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 강성주</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume.pdf" target="_blank" rel="noopener">이력서 PDF</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

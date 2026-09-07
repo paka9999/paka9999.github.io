@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SeongjuClaw (성주클루) · Seongju Kang</title><meta name="description" content="An AI agent desktop app that runs Claude and local models on the same tool loop, with a closed-network mode"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/en/projects/seongjuclaw/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/seongjuclaw/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/seongjuclaw/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="SeongjuClaw (성주클루) · Seongju Kang"><meta property="og:description" content="An AI agent desktop app that runs Claude and local models on the same tool loop, with a closed-network mode"><meta property="og:url" content="https://paka9999.github.io/en/projects/seongjuclaw/"><meta property="og:image" content="https://paka9999.github.io/images/seongjuclaw/offline-chat.jpg"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/en/">Seongju Kang</a><nav class="nav-links" aria-label="Sections"><a href="/en/#reel">Screens</a><a href="/en/#press">Awards</a><a href="/en/#strengths">Strengths</a><a href="/en/#experience">Work</a><a href="/en/#ai">AI</a><a href="/en/#projects">Personal</a><a href="/en/timeline/">Timeline</a></nav><div class="nav-actions"><a class="lang" href="/projects/seongjuclaw/" hreflang="ko" aria-label="한국어" title="한국어">KO</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/en/#projects">← Home</a><header class="detail-head"><p class="mono eyebrow">2026 · personal · private</p><h1>SeongjuClaw<small>성주클루</small></h1><p class="lead">An AI agent desktop app that runs Claude and local models on the same tool loop, with a closed-network mode</p><dl class="meta"><div><dt class="mono">Role</dt><dd>Design and implementation</dd></div><div><dt class="mono">Period</dt><dd>2026.07 – present</dd></div><div><dt class="mono">Status</dt><dd>In use</dd></div><div><dt class="mono">Stack</dt><dd>Python, pywebview, Claude API, Ollama, RAG</dd></div><div><dt class="mono">Links</dt><dd class="dd-links"><a href="https://github.com/paka9999/seongjuclaw" target="_blank" rel="noopener">GitHub</a></dd></div></dl></header><div class="gallery n3"><figure><button type="button" class="zoom" aria-label="seongjuclaw offline-chat click to enlarge"><img src="/images/seongjuclaw/offline-chat.jpg" alt="seongjuclaw offline-chat" loading="eager" decoding="async"></button><figcaption>Closed-network mode: the local model (gemma4 12b) reads README and agent.py with read_file and answers</figcaption></figure><figure><button type="button" class="zoom" aria-label="seongjuclaw offline-home click to enlarge"><img src="/images/seongjuclaw/offline-home.jpg" alt="seongjuclaw offline-home" loading="eager" decoding="async"></button><figcaption>Closed-network mode: outbound calls blocked, local model only; theme turns black and amber, external features disappear</figcaption></figure><figure><button type="button" class="zoom" aria-label="seongjuclaw local-models click to enlarge"><img src="/images/seongjuclaw/local-models.jpg" alt="seongjuclaw local-models" loading="eager" decoding="async"></button><figcaption>Model picker: local Ollama models, server status, free memory</figcaption></figure><figure><button type="button" class="zoom" aria-label="seongjuclaw home click to enlarge"><img src="/images/seongjuclaw/home.jpg" alt="seongjuclaw home" loading="eager" decoding="async"></button><figcaption>Open-network home dashboard: session groups, cost, schedules, notifications</figcaption></figure></div><div class="detail-grid"><div class="prose"><h2 id="why">Why</h2>
+<p>I wanted to take apart, my own way, an agent that uses tools from the terminal the way Claude Code does. I studied projects like OpenClaw but set one constraint: the core is a single library: and wrote the agent loop myself.</p>
+<h2 id="what-i-built">What I built</h2>
+<ul>
+<li><strong>Agent core</strong>: Five tools (read, write, edit, glob, grep) at first, then web search, a skill system (SKILL.md), persistent memory, image input and local RAG.</li>
+<li><strong>App</strong>: A native macOS app on pywebview (Windows supported). Multi-session with groups, keyword and semantic search, conversation branching, export, and a voice conversation mode.</li>
+<li><strong>Models</strong>: Eight Claude models plus local models via Ollama. New models are picked up from the Models API automatically; the local tab handles downloads, a memory gauge and server on/off.</li>
+<li><strong>Closed-network mode</strong>: every outbound call is blocked and only local models run. The theme changes and external-feature buttons disappear so the mode is obvious at a glance. A mode enabled by environment variable cannot be turned off from the UI.</li>
+<li><strong>Auth</strong>: Pay-as-you-go API key or a Claude subscription token. Several accounts can be registered and switched with one click.</li>
+</ul>
+<h2 id="decisions">Decisions</h2>
+<ul>
+<li><strong>Parallel tools</strong>: Read-only tools in a turn are batched and run concurrently; a write or side-effect tool breaks the batch so order is preserved.</li>
+<li><strong>Working rules in the prompt</strong>: No guessing, read before editing, confirm the change landed, finish the job, and report verified vs. unverified separately. I kept the same rules while building this portfolio.</li>
+<li><strong>Serverless RAG</strong>: Embedding and search run locally with fastembed + numpy. No index server, so installation is one <code>pip install -e ".[rag]"</code>.</li>
+<li><strong>Shared engine</strong>: Core I/O handlers are separated so the CLI and GUI share the same engine.</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li>Local models differ in structured output and thinking support, so the per-model capability table is read from API responses instead of being hard-coded.</li>
+<li>Long sessions kept breaking until automatic compaction at 90% context, prompt caching and network retry were added.</li>
+</ul>
+<h2 id="verification">Verification</h2>
+<p>The tool loop and RAG were run end to end with real models. The captures above are from September 2026: closed-network mode with the local model (gemma4 12b) reading files and answering.</p>
+</div><aside class="detail-aside"><p class="mono">Summary</p><p class="aside-summary">A macOS/Windows app that uses Claude and local models (Ollama) as the brain and the terminal, files and web as hands. A minimal agent loop that started with &quot;the core is one library&quot; and grew parallel tool execution, multi-session, semantic search, serverless local RAG and voice conversation.</p><ul class="aside-list"><li>Read-only tools in one turn run in parallel; a write or side-effect tool breaks the batch to preserve order</li><li>Working rules enforced in the prompt: no guessing, read before edit, report what was verified and what was not</li><li>Claude subscription-token auth, new models picked up from the Models API, local RAG with fastembed + numpy</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="Close">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/en/projects/slimemaker/"><span class="mono">← Previous</span><b>SlimeMaker</b></a><a class="right" href="/en/projects/shorts-factory/"><span class="mono">Next →</span><b>shorts-factory</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 Seongju Kang</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume-en.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

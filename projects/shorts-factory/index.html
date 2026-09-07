@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>shorts-factory · 강성주</title><meta name="description" content="소재부터 발행까지, 숏폼 영상 생산 파이프라인"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/projects/shorts-factory/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/shorts-factory/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/shorts-factory/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="shorts-factory · 강성주"><meta property="og:description" content="소재부터 발행까지, 숏폼 영상 생산 파이프라인"><meta property="og:url" content="https://paka9999.github.io/projects/shorts-factory/"><meta property="og:image" content="https://paka9999.github.io/images/shorts/b.jpg"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/">강성주</a><nav class="nav-links" aria-label="Sections"><a href="/#reel">화면</a><a href="/#press">수상</a><a href="/#strengths">강점</a><a href="/#experience">참여 프로젝트</a><a href="/#ai">AI 활용</a><a href="/#projects">개인</a><a href="/timeline/">연혁</a></nav><div class="nav-actions"><a class="lang" href="/en/projects/shorts-factory/" hreflang="en" aria-label="English" title="English">EN</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/#projects">← 홈으로</a><header class="detail-head"><p class="mono eyebrow">2026 · 개인 · 비공개</p><h1>shorts-factory</h1><p class="lead">소재부터 발행까지, 숏폼 영상 생산 파이프라인</p><dl class="meta"><div><dt class="mono">역할</dt><dd>설계·구현 전부</dd></div><div><dt class="mono">기간</dt><dd>2026.08</dd></div><div><dt class="mono">상태</dt><dd>명령 한 줄로 영상 출력</dd></div><div><dt class="mono">스택</dt><dd>Python, ffmpeg, Ollama, LLM</dd></div><div><dt class="mono">링크</dt><dd class="dd-links"><a href="https://github.com/paka9999/shorts-factory" target="_blank" rel="noopener">GitHub</a></dd></div></dl></header><div class="gallery n3 tall"><figure><button type="button" class="zoom" aria-label="생성된 숏폼 썸네일 확대해서 보기"><img src="/images/shorts/b.jpg" alt="생성된 숏폼 썸네일" loading="eager" decoding="async"></button></figure><figure><button type="button" class="zoom" aria-label="자막이 입혀진 프레임 확대해서 보기"><img src="/images/shorts/a.jpg" alt="자막이 입혀진 프레임" loading="eager" decoding="async"></button></figure><figure><button type="button" class="zoom" aria-label="생성된 숏폼 썸네일 확대해서 보기"><img src="/images/shorts/c.jpg" alt="생성된 숏폼 썸네일" loading="eager" decoding="async"></button></figure></div><div class="detail-grid"><div class="prose"><h2 id="배경">배경</h2>
+<p>숏폼 하나를 만드는 데 소재 찾기, 대본, 나레이션, 자막 타이밍, 배경, 편집, 업로드까지 손이 일곱 번 갑니다. 이 일곱 단계를 각각 교체 가능한 프로바이더로 쪼개, 명령 한 줄로 영상이 나오게 했습니다.</p>
+<h2 id="파이프라인">파이프라인</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>소재 → 대본(LLM) → 나레이션(TTS) → 자막 타이밍 → 배경 → ffmpeg 조립 → 발행</span></span></code></pre>
+<p>기본값은 전부 API 키 없이 로컬에서 도는 것들입니다(로컬 LLM, macOS TTS, 그라데이션 배경, 추정 타이밍). 클론하고 ffmpeg만 있으면 바로 나오고, 유료 API는 <code>config.toml</code>에서 한 줄씩 갈아끼웁니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>$ shorts-factory make "엘리베이터 닫힘 버튼은 정말 작동할까"</span></span>
+<span class="line"><span>▶ 대본 작성 (llm) · 나레이션 합성 (macos, 6개 구획) · 배경 (gradient) · 자막 타이밍 (estimate) · 렌더링</span></span>
+<span class="line"><span>✓ 26.8초 / 2.1MB → out/…</span></span></code></pre>
+<h2 id="기술적-결정">기술적 결정</h2>
+<ul>
+<li>코어는 서드파티 의존성 0. Python 3.11+와 ffmpeg만 요구합니다.</li>
+<li>Homebrew ffmpeg 8 슬림 빌드에는 libass가 없어 자막 필터를 쓸 수 없었습니다. 자막은 Pillow로 프레임을 그려 오버레이하는 우회로 해결했습니다.</li>
+<li>로컬 모델은 구조화 출력 품질이 모델마다 달라, 대본 파서에 관대한 폴백을 두었습니다.</li>
+</ul>
+<h2 id="상태">상태</h2>
+<p>명령 한 줄에 26초·2MB짜리 결과물이 나옵니다. 브라우저 프리뷰 패널(HTML/JS)을 포함합니다.</p>
+</div><aside class="detail-aside"><p class="mono">요약</p><p class="aside-summary">소재 → 대본 → 나레이션 → 자막 타이밍 → 배경 → ffmpeg 조립 → 발행 7단계를 교체 가능한 프로바이더로 구성. 기본값은 전부 API 키 없이 로컬에서 도는 것들이라 ffmpeg만 있으면 영상이 나옵니다.</p><ul class="aside-list"><li>코어는 서드파티 의존성 0: Python 3.11+와 ffmpeg만 요구</li><li>유료 API(LLM·TTS·스톡 영상)는 config.toml에서 한 줄씩 교체</li><li>libass 없는 ffmpeg 빌드를 위해 자막은 Pillow로 프레임을 그려 오버레이</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="닫기">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/projects/seongjuclaw/"><span class="mono">← 이전</span><b>성주클루</b></a><a class="right" href="/projects/discord-meeting-bot/"><span class="mono">다음 →</span><b>discord-meeting-bot</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 강성주</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume.pdf" target="_blank" rel="noopener">이력서 PDF</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>YATAV 기업 블로그 (Next.js · PostgreSQL · EC2) · 강성주</title><meta name="description" content="회사 인사이트·도입 사례를 올릴 자체 블로그를 만들어 배포했습니다"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/projects/blog/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/blog/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/blog/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="YATAV 기업 블로그 (Next.js · PostgreSQL · EC2) · 강성주"><meta property="og:description" content="회사 인사이트·도입 사례를 올릴 자체 블로그를 만들어 배포했습니다"><meta property="og:url" content="https://paka9999.github.io/projects/blog/"><meta property="og:image" content="https://paka9999.github.io/images/work/blog.jpg"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/">강성주</a><nav class="nav-links" aria-label="Sections"><a href="/#reel">화면</a><a href="/#press">수상</a><a href="/#strengths">강점</a><a href="/#experience">참여 프로젝트</a><a href="/#ai">AI 활용</a><a href="/#projects">개인</a><a href="/timeline/">연혁</a></nav><div class="nav-actions"><a class="lang" href="/en/projects/blog/" hreflang="en" aria-label="English" title="English">EN</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/#experience">← 홈으로</a><header class="detail-head"><p class="mono eyebrow">2026 · 회사</p><h1>YATAV 기업 블로그<small>Next.js · PostgreSQL · EC2</small></h1><p class="lead">회사 인사이트·도입 사례를 올릴 자체 블로그를 만들어 배포했습니다</p><dl class="meta"><div><dt class="mono">역할</dt><dd>설계·구현·배포 전부</dd></div><div><dt class="mono">기간</dt><dd>2026</dd></div><div><dt class="mono">상태</dt><dd>라이브</dd></div><div><dt class="mono">스택</dt><dd>Next.js, TypeScript, PostgreSQL, Docker, nginx</dd></div><div><dt class="mono">링크</dt><dd class="dd-links"><a href="https://blog.yatavent.com" target="_blank" rel="noopener">blog.yatavent.com</a></dd></div></dl></header><div class="gallery n1"><figure><button type="button" class="zoom" aria-label="YATAV 블로그 확대해서 보기"><img src="/images/work/blog.jpg" alt="YATAV 블로그" loading="eager" decoding="async"></button></figure></div><div class="detail-grid"><div class="prose"><h2 id="만든-것">만든 것</h2>
+<p>회사 블로그 전체입니다. 글 목록·카테고리·태그·검색, 관리자 에디터(TipTap), 도커 이미지 빌드와 EC2 배포, RDS PostgreSQL 연결. PR 8건으로 완성했습니다.</p>
+<h2 id="함정-기록">함정 기록</h2>
+<ul>
+<li><code>NEXT_PUBLIC_*</code>은 빌드 타임에 박히고, standalone 출력은 런타임에 <code>public/</code>을 서빙하지 않습니다. 도커 이미지에 public을 따로 복사해야 했습니다.</li>
+<li>rate-limit의 클라이언트 IP는 프록시 체인이 붙인 헤더에서 어느 자리를 믿느냐로 갈립니다. ALB와 nginx가 둘 다 값을 덧붙이므로, 앞이 아니라 우리 프록시가 넣은 자리를 신뢰하도록 했습니다.</li>
+<li>TipTap 표는 확장이 없으면 경고 없이 소실되고, 셀 안 <code>&lt;p&gt;</code>에 후손 선택자 여백이 걸립니다. <code>@tiptap/*</code> 버전은 일괄 고정했습니다.</li>
+</ul>
+</div><aside class="detail-aside"><p class="mono">요약</p><p class="aside-summary">Next.js + PostgreSQL 블로그를 EC2 도커로 배포했습니다. TipTap 에디터, 태그·카테고리, 검색, rate-limit. 빌드타임 환경변수·standalone 정적 파일·X-Forwarded-For 신뢰 같은 함정을 문서화했습니다.</p><ul class="aside-list"><li>NEXT_PUBLIC_* 은 빌드타임, standalone 출력은 런타임에 public/ 미서빙: 도커 이미지에 별도 복사</li><li>rate-limit의 클라이언트 IP는 프록시가 붙인 헤더의 어느 자리를 믿느냐로 갈림</li><li>TipTap 표는 확장 없으면 무경고 소실: @tiptap/* 버전 일괄 고정</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="닫기">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/projects/cost-dashboard/"><span class="mono">← 이전</span><b>클라우드 비용 절감 · 비용 대시보드</b></a><a class="right" href="/projects/aac-chatbot/"><span class="mono">다음 →</span><b>대학 AAC 챗봇 백엔드</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 강성주</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume.pdf" target="_blank" rel="noopener">이력서 PDF</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

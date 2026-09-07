@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>대학 AAC 챗봇 백엔드 (Python · RAG · OCR) · 강성주</title><meta name="description" content="인계받은 챗봇에 플랜별 한도와 rate-limit 엔진을 설계해 배포했습니다"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/projects/aac-chatbot/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/aac-chatbot/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/aac-chatbot/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="대학 AAC 챗봇 백엔드 (Python · RAG · OCR) · 강성주"><meta property="og:description" content="인계받은 챗봇에 플랜별 한도와 rate-limit 엔진을 설계해 배포했습니다"><meta property="og:url" content="https://paka9999.github.io/projects/aac-chatbot/"><meta property="og:image" content="https://paka9999.github.io/images/work/aac.jpg"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/">강성주</a><nav class="nav-links" aria-label="Sections"><a href="/#reel">화면</a><a href="/#press">수상</a><a href="/#strengths">강점</a><a href="/#experience">참여 프로젝트</a><a href="/#ai">AI 활용</a><a href="/#projects">개인</a><a href="/timeline/">연혁</a></nav><div class="nav-actions"><a class="lang" href="/en/projects/aac-chatbot/" hreflang="en" aria-label="English" title="English">EN</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/#experience">← 홈으로</a><header class="detail-head"><p class="mono eyebrow">2026 · 회사</p><h1>대학 AAC 챗봇 백엔드<small>Python · RAG · OCR</small></h1><p class="lead">인계받은 챗봇에 플랜별 한도와 rate-limit 엔진을 설계해 배포했습니다</p><dl class="meta"><div><dt class="mono">역할</dt><dd>백엔드 개발·배포</dd></div><div><dt class="mono">기간</dt><dd>2026.06</dd></div><div><dt class="mono">상태</dt><dd>prod 운영 중</dd></div><div><dt class="mono">스택</dt><dd>Python, Node.js, RAG, ECR, EC2</dd></div></dl></header><div class="gallery n1"><figure><button type="button" class="zoom" aria-label="대학 AAC 챗봇 백엔드 확대해서 보기"><img src="/images/work/aac.jpg" alt="대학 AAC 챗봇 백엔드" loading="eager" decoding="async"></button></figure></div><div class="detail-grid"><div class="prose"><h2 id="배경">배경</h2>
+<p>대학의 AAC(보완대체의사소통) 챗봇 백엔드를 인계받았습니다. 프론트(Node)와 RAG API(Python)가 EC2에 따로 올라가는 구조였습니다.</p>
+<h2 id="만든-것">만든 것</h2>
+<ul>
+<li><strong>플랜 엔진</strong>: Basic/Plus/Premium 월 한도 + rate-limit. 챗과 OCR을 각각 카운트하고, OCR은 Vision 호출 직전에 <code>plan.consume</code>으로 차단합니다.</li>
+<li>RAG 직접 호출 차단(내부 시크릿 헤더), /health의 실제 OpenAI 검증, 하이드레이션 오류·챗 쿼터 프론트 반영.</li>
+<li>테스트 26개(vitest), requirements 고정.</li>
+</ul>
+<h2 id="배포">배포</h2>
+<p>CI 결제가 막힌 상황이라 수동 SSH 배포 체계를 정리했습니다. 프론트는 ECR amd64 빌드 후 컨테이너 교체, RAG API는 EC2 네이티브 빌드.</p>
+<h2 id="남긴-것">남긴 것</h2>
+<p>보안 감사에서 공지 저장형 XSS(HIGH), 무인증 사용량 로그, CORS·로그인 rate-limit, JWT 폴백 같은 후속 과제를 정리해 넘겼습니다.</p>
+</div><aside class="detail-aside"><p class="mono">요약</p><p class="aside-summary">보완대체의사소통(AAC) 챗봇 백엔드를 인계받아 Basic/Plus/Premium 플랜과 월 한도·rate-limit 엔진을 넣고, 내부 RAG API 직접 호출을 차단했습니다. CI가 막힌 상황에서 수동 배포 체계를 정리하고 보안 감사 후속 과제를 도출했습니다.</p><ul class="aside-list"><li>Basic/Plus/Premium 플랜 한도·OCR 쿼터·내부 RAG 직접 호출 차단</li><li>수동 SSH 배포 체계: 프론트는 ECR 빌드 후 컨테이너 교체, RAG API는 EC2 네이티브 빌드</li><li>보안 감사: 공지 저장형 XSS(HIGH)·무인증 사용량 로그·CORS·로그인 rate-limit 후속 도출</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="닫기">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/projects/blog/"><span class="mono">← 이전</span><b>YATAV 기업 블로그</b></a><a class="right" href="/projects/nice-s2s/"><span class="mono">다음 →</span><b>NICE 본인확인 S2S 전환</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 강성주</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume.pdf" target="_blank" rel="noopener">이력서 PDF</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

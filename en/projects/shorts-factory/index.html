@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>shorts-factory · Seongju Kang</title><meta name="description" content="A short-form video pipeline from topic to publish"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/en/projects/shorts-factory/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/shorts-factory/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/shorts-factory/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="shorts-factory · Seongju Kang"><meta property="og:description" content="A short-form video pipeline from topic to publish"><meta property="og:url" content="https://paka9999.github.io/en/projects/shorts-factory/"><meta property="og:image" content="https://paka9999.github.io/images/shorts/b.jpg"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/en/">Seongju Kang</a><nav class="nav-links" aria-label="Sections"><a href="/en/#reel">Screens</a><a href="/en/#press">Awards</a><a href="/en/#strengths">Strengths</a><a href="/en/#experience">Work</a><a href="/en/#ai">AI</a><a href="/en/#projects">Personal</a><a href="/en/timeline/">Timeline</a></nav><div class="nav-actions"><a class="lang" href="/projects/shorts-factory/" hreflang="ko" aria-label="한국어" title="한국어">KO</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/en/#projects">← Home</a><header class="detail-head"><p class="mono eyebrow">2026 · personal · private</p><h1>shorts-factory</h1><p class="lead">A short-form video pipeline from topic to publish</p><dl class="meta"><div><dt class="mono">Role</dt><dd>Design and implementation</dd></div><div><dt class="mono">Period</dt><dd>2026.08</dd></div><div><dt class="mono">Status</dt><dd>One command → video</dd></div><div><dt class="mono">Stack</dt><dd>Python, ffmpeg, Ollama, LLM</dd></div><div><dt class="mono">Links</dt><dd class="dd-links"><a href="https://github.com/paka9999/shorts-factory" target="_blank" rel="noopener">GitHub</a></dd></div></dl></header><div class="gallery n3 tall"><figure><button type="button" class="zoom" aria-label="Generated short thumbnail click to enlarge"><img src="/images/shorts/b.jpg" alt="Generated short thumbnail" loading="eager" decoding="async"></button></figure><figure><button type="button" class="zoom" aria-label="Frame with captions click to enlarge"><img src="/images/shorts/a.jpg" alt="Frame with captions" loading="eager" decoding="async"></button></figure><figure><button type="button" class="zoom" aria-label="Generated short thumbnail click to enlarge"><img src="/images/shorts/c.jpg" alt="Generated short thumbnail" loading="eager" decoding="async"></button></figure></div><div class="detail-grid"><div class="prose"><h2 id="why">Why</h2>
+<p>A single short takes seven manual steps: finding a topic, script, narration, caption timing, background, editing, upload. I split those seven into swappable providers so one command produces a video.</p>
+<h2 id="pipeline">Pipeline</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>topic → script (LLM) → narration (TTS) → caption timing → background → ffmpeg assembly → publish</span></span></code></pre>
+<p>Defaults all run locally with no API key (local LLM, macOS TTS, gradient background, estimated timing). Clone it, have ffmpeg, get a video. Paid APIs are swapped in one line at a time in <code>config.toml</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>$ shorts-factory make "Does the elevator close button actually work?"</span></span>
+<span class="line"><span>▶ script (llm) · narration (macos, 6 segments) · background (gradient) · captions (estimate) · render</span></span>
+<span class="line"><span>✓ 26.8 s / 2.1 MB → out/…</span></span></code></pre>
+<h2 id="decisions">Decisions</h2>
+<ul>
+<li>Zero third-party dependencies in the core; only Python 3.11+ and ffmpeg.</li>
+<li>The Homebrew ffmpeg 8 slim build has no libass, so the subtitle filter was unavailable. Captions are drawn as frames with Pillow and overlaid instead.</li>
+<li>Structured output quality varies by local model, so the script parser has forgiving fallbacks.</li>
+</ul>
+<h2 id="status">Status</h2>
+<p>One command yields a 26-second, 2 MB result. Includes a browser preview panel (HTML/JS).</p>
+</div><aside class="detail-aside"><p class="mono">Summary</p><p class="aside-summary">Seven stages: topic → script → narration → caption timing → background → ffmpeg assembly → publish: each a swappable provider. Defaults run locally with no API keys, so a clone plus ffmpeg produces a video.</p><ul class="aside-list"><li>Zero third-party dependencies in the core: Python 3.11+ and ffmpeg only</li><li>Paid APIs (LLM, TTS, stock footage) swap in with one line in config.toml</li><li>Captions drawn with Pillow and overlaid, because the Homebrew ffmpeg build lacks libass</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="Close">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/en/projects/seongjuclaw/"><span class="mono">← Previous</span><b>SeongjuClaw</b></a><a class="right" href="/en/projects/discord-meeting-bot/"><span class="mono">Next →</span><b>discord-meeting-bot</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 Seongju Kang</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume-en.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

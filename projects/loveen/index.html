@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Loveen (러빈) · 강성주</title><meta name="description" content="기획부터 네이티브 구현까지, 1:1 커플 앱"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/projects/loveen/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/loveen/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/loveen/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="Loveen (러빈) · 강성주"><meta property="og:description" content="기획부터 네이티브 구현까지, 1:1 커플 앱"><meta property="og:url" content="https://paka9999.github.io/projects/loveen/"><meta property="og:image" content="https://paka9999.github.io/og.png"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/">강성주</a><nav class="nav-links" aria-label="Sections"><a href="/#reel">화면</a><a href="/#press">수상</a><a href="/#strengths">강점</a><a href="/#experience">참여 프로젝트</a><a href="/#ai">AI 활용</a><a href="/#projects">개인</a><a href="/timeline/">연혁</a></nav><div class="nav-actions"><a class="lang" href="/en/projects/loveen/" hreflang="en" aria-label="English" title="English">EN</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/#projects">← 홈으로</a><header class="detail-head"><p class="mono eyebrow">2026 · 개인 · 비공개</p><h1>Loveen<small>러빈</small></h1><p class="lead">기획부터 네이티브 구현까지, 1:1 커플 앱</p><dl class="meta"><div><dt class="mono">역할</dt><dd>기획·설계·구현</dd></div><div><dt class="mono">기간</dt><dd>2026.07: 진행 중</dd></div><div><dt class="mono">상태</dt><dd>Phase 1 구현 중</dd></div><div><dt class="mono">스택</dt><dd>Swift, Kotlin, NestJS, Prisma, PostgreSQL, Socket.IO</dd></div><div><dt class="mono">링크</dt><dd class="dd-links"><a href="https://github.com/paka9999/loveen" target="_blank" rel="noopener">GitHub</a></dd></div></dl></header><div class="detail-grid"><div class="prose"><h2 id="배경">배경</h2>
+<p>“둘만의 관계를 기록하고, 챙기고, 함께 움직이는 폐쇄형 공간.” 메신저가 입구, 아카이빙이 락인, 캘린더가 복귀 트리거, 지도가 확장이라는 가설로 커플 앱을 기획했습니다.</p>
+<h2 id="만든-것">만든 것</h2>
+<ul>
+<li><strong>문서 10종</strong>: 기획안, 출시 로드맵, 기술 아키텍처, 핵심 설계 리스크(이별 플로우·데이터 모델·온보딩), Phase 1 기능명세, 설계 결정 기록(E2E·삭제 정책·최소 OS), ERD, 화면 흐름도, API 명세(REST + WebSocket 이벤트), 개발 일정·인력 산정.</li>
+<li><strong>모노레포</strong>: NestJS 10 + Prisma 5 + PostgreSQL 16 + Redis 7 + MinIO + coturn 백엔드, Socket.IO 게이트웨이(채팅·함께 그리기·통화 시그널링), SwiftUI iOS(iOS 16+), Kotlin/Compose Android(minSdk 26).</li>
+<li>Phase 1 와이어프레임(HTML)과 9슬라이드 피칭 덱.</li>
+</ul>
+<h2 id="기술적-결정">기술적 결정</h2>
+<ul>
+<li><strong>네이티브 두 벌</strong>(Swift + Kotlin)을 택했습니다. 메신저·통화·사진 아카이빙은 플랫폼 API 의존이 커서, 크로스플랫폼의 이점보다 비용이 크다고 판단했습니다.</li>
+<li><strong>이별 플로우를 먼저</strong> 설계했습니다. 커플 앱에서 가장 어려운 엣지케이스라 데이터 모델 단계에서 정했습니다.</li>
+</ul>
+<h2 id="상태">상태</h2>
+<p>기획·설계 완료, Phase 1 구현 진행 중. HANDOFF 문서가 현재 상태의 단일 출처입니다.</p>
+</div><aside class="detail-aside"><p class="mono">요약</p><p class="aside-summary">메신저·아카이빙·캘린더·지도 4개 기둥. 기획안·ERD·API 명세·ADR 등 문서 10종과 NestJS 백엔드, SwiftUI iOS, Compose Android 모노레포.</p><ul class="aside-list"><li>문서 10종: 기획안·로드맵·아키텍처·핵심 설계 리스크·기능명세·ADR·ERD·IA·API 명세·공수 산정</li><li>NestJS 10 + Prisma + PostgreSQL + Redis + MinIO + coturn, Socket.IO 게이트웨이</li><li>이별(관계 종료) 플로우를 데이터 모델 단계에서 먼저 설계</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="닫기">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/projects/manna/"><span class="mono">← 이전</span><b>만나</b></a><a class="right" href="/projects/easyweb/"><span class="mono">다음 →</span><b>easyweb</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 강성주</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume.pdf" target="_blank" rel="noopener">이력서 PDF</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

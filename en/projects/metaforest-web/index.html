@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MetaForest Web &amp; Backend (Node.js · MySQL · AWS) · Seongju Kang</title><meta name="description" content="Traced real-user incidents in booking, deep links and organization management to their causes"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/en/projects/metaforest-web/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/metaforest-web/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/metaforest-web/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="MetaForest Web &amp; Backend (Node.js · MySQL · AWS) · Seongju Kang"><meta property="og:description" content="Traced real-user incidents in booking, deep links and organization management to their causes"><meta property="og:url" content="https://paka9999.github.io/en/projects/metaforest-web/"><meta property="og:image" content="https://paka9999.github.io/images/work/metaforest-web.jpg"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/en/">Seongju Kang</a><nav class="nav-links" aria-label="Sections"><a href="/en/#reel">Screens</a><a href="/en/#press">Awards</a><a href="/en/#strengths">Strengths</a><a href="/en/#experience">Work</a><a href="/en/#ai">AI</a><a href="/en/#projects">Personal</a><a href="/en/timeline/">Timeline</a></nav><div class="nav-actions"><a class="lang" href="/projects/metaforest-web/" hreflang="ko" aria-label="한국어" title="한국어">KO</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/en/#experience">← Home</a><header class="detail-head"><p class="mono eyebrow">2026 · work</p><h1>MetaForest Web &amp; Backend<small>Node.js · MySQL · AWS</small></h1><p class="lead">Traced real-user incidents in booking, deep links and organization management to their causes</p><dl class="meta"><div><dt class="mono">Role</dt><dd>Backend and web development</dd></div><div><dt class="mono">Period</dt><dd>2026.05 – 2026.07</dd></div><div><dt class="mono">Status</dt><dd>In production</dd></div><div><dt class="mono">Stack</dt><dd>Node.js, MySQL, Docker, nginx, AWS</dd></div><div><dt class="mono">Links</dt><dd class="dd-links"><a href="https://www.metaforest.us" target="_blank" rel="noopener">metaforest.us</a></dd></div></dl></header><div class="gallery n2"><figure><button type="button" class="zoom" aria-label="Website click to enlarge"><img src="/images/work/metaforest-web.jpg" alt="Website" loading="eager" decoding="async"></button><figcaption>metaforest.us home</figcaption></figure><figure><button type="button" class="zoom" aria-label="Download page click to enlarge"><img src="/images/work/metaforest-devices.jpg" alt="Download page" loading="eager" decoding="async"></button><figcaption>Download page: four stores and the launcher download list</figcaption></figure></div><div class="detail-grid"><div class="prose"><h2 id="context">Context</h2>
+<p>The MetaForest web app (booking, organization management, session records) and its Node.js backend, running as dev/prod containers on a single EC2 instance.</p>
+<h2 id="deep-link-expiry-incident">Deep-link expiry incident</h2>
+<p>Changing a session’s schedule issued a new token but did not expire the old one, so booking SMS went out carrying already-deleted tokens. Token expiry now updates on the schedule-change path; the fix was verified by executing the built artifact directly before release.</p>
+<h2 id="one-column-three-symptoms">One column, three symptoms</h2>
+<p>Three separate reports: AI counseling showing “disabled”, social login bouncing, wrong default organization: all traced to the legacy <code>users.partnerId</code>. Code fixed, 72 users corrected in a full audit. A dead condition (<code>|| constant</code>) broke things when revived, so it was removed rather than restored. Zero regressions measured.</p>
+<h2 id="four-booking-screen-bugs">Four booking-screen bugs</h2>
+<p>Desktop date picker (<code>.dateArrow</code> pointer-events), multi-organization LNB via chat link (session-restore regression), date field autocomplete, and an unfilled organization select in the mobile booking modal. The first diagnosis blamed the session-restore regression; the real core was the unfilled select. The misdiagnosis was written down.</p>
+<h2 id="cache-policy-and-more">Cache policy and more</h2>
+<ul>
+<li>Stale JS after deploys was resolved with query versioning (<code>?v=</code>), html no-cache and one-day caching for js/css, together with PRs on the deployment tool; live on dev and prod.</li>
+<li>A sub-organization hierarchy (mapping institutions under an education office) and an Agora webhook-based voice cost page, including a fix for a duplicate-session race in the webhook handler.</li>
+</ul>
+</div><aside class="detail-aside"><p class="mono">Summary</p><p class="aside-summary">An incident where entry-link tokens did not expire with schedule changes, three symptoms caused by one legacy column, four booking-screen bugs, a static-asset cache policy, a sub-organization hierarchy, and an Agora cost tracking page.</p><ul class="aside-list"><li>Deep-link token expiry mismatch: verified by executing the built artifact directly</li><li>Full audit of legacy users.partnerId values removed the common cause of three reports</li><li>Four booking bugs: the first diagnosis (session-restore regression) was wrong; an unfilled booking-modal select was the core</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="Close">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/en/projects/metaforest-unity/"><span class="mono">← Previous</span><b>MetaForest Unity Client</b></a><a class="right" href="/en/projects/aegis/"><span class="mono">Next →</span><b>AEGIS: AI Security Gateway (AI DLP)</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 Seongju Kang</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume-en.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

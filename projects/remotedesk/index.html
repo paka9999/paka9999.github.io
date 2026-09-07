@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>RemoteDesk · 강성주</title><meta name="description" content="휴대폰에서 Windows PC를 WebRTC로 원격 제어"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/projects/remotedesk/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/remotedesk/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/remotedesk/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="RemoteDesk · 강성주"><meta property="og:description" content="휴대폰에서 Windows PC를 WebRTC로 원격 제어"><meta property="og:url" content="https://paka9999.github.io/projects/remotedesk/"><meta property="og:image" content="https://paka9999.github.io/og.png"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/">강성주</a><nav class="nav-links" aria-label="Sections"><a href="/#reel">화면</a><a href="/#press">수상</a><a href="/#strengths">강점</a><a href="/#experience">참여 프로젝트</a><a href="/#ai">AI 활용</a><a href="/#projects">개인</a><a href="/timeline/">연혁</a></nav><div class="nav-actions"><a class="lang" href="/en/projects/remotedesk/" hreflang="en" aria-label="English" title="English">EN</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/#projects">← 홈으로</a><header class="detail-head"><p class="mono eyebrow">2026 · 개인 · 비공개</p><h1>RemoteDesk</h1><p class="lead">휴대폰에서 Windows PC를 WebRTC로 원격 제어</p><dl class="meta"><div><dt class="mono">역할</dt><dd>설계·구현 전부</dd></div><div><dt class="mono">기간</dt><dd>2026.07 – 2026.08</dd></div><div><dt class="mono">상태</dt><dd>M3 완료</dd></div><div><dt class="mono">스택</dt><dd>C#, .NET 9, WebRTC, H.264, Kotlin, Node.js</dd></div><div><dt class="mono">링크</dt><dd class="dd-links"><a href="https://github.com/paka9999/remotedesk" target="_blank" rel="noopener">GitHub</a></dd></div></dl></header><div class="detail-grid"><div class="prose"><h2 id="배경">배경</h2>
+<p>소파에서 휴대폰으로 방 안 PC를 조작하고 싶었습니다. 기존 원격 데스크톱은 계정·중계 서버·설치 과정이 무거워서, 내 PC와 내 폰 사이에만 필요한 최소 구성으로 직접 만들었습니다.</p>
+<h2 id="무엇을-만들었나">무엇을 만들었나</h2>
+<ul>
+<li><strong>호스트</strong>: .NET 9 라이브러리(RemoteDesk.Core) + WPF 트레이 앱 + 콘솔 CLI(진단 프로브 포함).</li>
+<li><strong>시그널링</strong>: Node.js WebSocket 릴레이. 같은 포트에서 브라우저 뷰어도 서빙합니다.</li>
+<li><strong>뷰어</strong>: Kotlin 안드로이드 앱과 브라우저 뷰어(참조 구현).</li>
+<li><strong>조작</strong>: 직접 터치(누른 자리 클릭)와 트랙패드(상대 이동) 두 모드. 탭은 좌클릭, 길게 누르면 우클릭, 두 손가락은 스크롤, 드래그는 버튼을 누른 채 이동. Ctrl·Alt·Shift·Win은 눌린 상태로 고정됐다가 다음 입력에서 함께 발동합니다.</li>
+</ul>
+<h2 id="기술적-결정">기술적 결정</h2>
+<ul>
+<li><strong>하드웨어 H.264 + WebRTC</strong>: 지연을 줄이려 소프트웨어 인코딩 대신 GPU 인코더를 쓰고, 영상은 WebRTC 미디어 채널, 입력은 데이터 채널로 보냅니다.</li>
+<li><strong>파이프라인은 하나</strong>: 캡처·인코딩은 시청자 수와 무관하게 한 개만 돌고, 첫 시청자가 붙을 때 시작해 마지막 시청자가 나가면 멈춥니다. 대기 중인 호스트는 GPU를 쓰지 않습니다.</li>
+<li>설정은 <code>%APPDATA%\RemoteDesk\config.json</code>에 저장되고, 커맨드라인 인자가 설정 파일을 덮어씁니다. 창을 닫아도 트레이에 남습니다.</li>
+</ul>
+<h2 id="실측">실측</h2>
+<p>로컬, 2560×1440 소스 기준으로 1920×1080 30fps, 약 2.1 Mbps, 패킷 손실 0, RTT 15~31 ms.</p>
+<h2 id="상태">상태</h2>
+<p>M3: 브라우저를 열고 host id를 넣으면 PC 화면이 보이고 터치로 조작됩니다. 브라우저 뷰어가 기준 구현이고, 안드로이드 뷰어는 같은 프로토콜을 따릅니다.</p>
+</div><aside class="detail-aside"><p class="mono">요약</p><p class="aside-summary">데스크톱을 캡처해 하드웨어 H.264로 인코딩하고 WebRTC로 송출한 뒤, 터치·키보드를 되돌려 받아 실제 마우스·키보드 입력으로 주입합니다. .NET 9 호스트(WPF/CLI), Node 시그널링 릴레이, Kotlin 안드로이드 뷰어, 브라우저 뷰어로 구성됩니다.</p><ul class="aside-list"><li>직접 터치와 트랙패드 두 조작 모드, 길게 누르면 우클릭, 두 손가락 스크롤, 수정키 고정</li><li>캡처·인코딩 파이프라인은 시청자 수와 무관하게 하나, 대기 중엔 GPU를 쓰지 않음</li><li>로컬 실측 1080p 30fps · 약 2.1 Mbps · RTT 15~31 ms · 패킷 손실 0</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="닫기">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/projects/discord-meeting-bot/"><span class="mono">← 이전</span><b>discord-meeting-bot</b></a><a class="right" href="/projects/myfan/"><span class="mono">다음 →</span><b>myfan</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 강성주</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume.pdf" target="_blank" rel="noopener">이력서 PDF</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>슬라임 공방 (SlimeMaker) · 강성주</title><meta name="description" content="ASMR 슬라임 모바일 게임"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/projects/slimemaker/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/slimemaker/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/slimemaker/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="슬라임 공방 (SlimeMaker) · 강성주"><meta property="og:description" content="ASMR 슬라임 모바일 게임"><meta property="og:url" content="https://paka9999.github.io/projects/slimemaker/"><meta property="og:image" content="https://paka9999.github.io/og.png"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/">강성주</a><nav class="nav-links" aria-label="Sections"><a href="/#reel">화면</a><a href="/#press">수상</a><a href="/#strengths">강점</a><a href="/#experience">참여 프로젝트</a><a href="/#ai">AI 활용</a><a href="/#projects">개인</a><a href="/timeline/">연혁</a></nav><div class="nav-actions"><a class="lang" href="/en/projects/slimemaker/" hreflang="en" aria-label="English" title="English">EN</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/#projects">← 홈으로</a><header class="detail-head"><p class="mono eyebrow">2026 · 개인 · 비공개</p><h1>슬라임 공방<small>SlimeMaker</small></h1><p class="lead">ASMR 슬라임 모바일 게임</p><dl class="meta"><div><dt class="mono">역할</dt><dd>설계·구현 전부</dd></div><div><dt class="mono">기간</dt><dd>2026.06</dd></div><div><dt class="mono">상태</dt><dd>플레이 가능</dd></div><div><dt class="mono">스택</dt><dd>Unity 6, C#, URP</dd></div><div><dt class="mono">링크</dt><dd class="dd-links"><a href="https://github.com/paka9999/SlimeMaker" target="_blank" rel="noopener">GitHub</a></dd></div></dl></header><div class="detail-grid"><div class="prose"><h2 id="배경">배경</h2>
+<p>누르고 잡고 늘리면 출렁이는 슬라임을 소리와 함께 만지는 ASMR 게임. 외부 에셋과 음원 없이 전부 런타임에 생성한다는 제약을 두고 만들었습니다.</p>
+<h2 id="만든-것">만든 것</h2>
+<ul>
+<li><strong>소프트바디</strong>: 72개 경계점을 스프링으로 묶어 누르면 들어가고 놓으면 자연스럽게 출렁입니다.</li>
+<li><strong>슬라임 6종</strong>: 크런치·비누·푸딩·버터·클라우드·젤리. 색·광택·점성(되직/물렁)·사운드가 모두 다릅니다.</li>
+<li><strong>절차적 ASMR 사운드</strong>: 오디오 파일 없이 합성합니다. 크런치는 노이즈 그레인, 젤리는 물방울 사인 스윕.</li>
+<li><strong>씬 편집 불필요</strong>: <code>RuntimeInitializeOnLoadMethod</code>로 카메라·UI·오디오·슬라임을 코드에서 전부 부트스트랩합니다.</li>
+</ul>
+<h2 id="모바일-해상도-설계">모바일 해상도 설계</h2>
+<p>세로 게임에서 폭이 고정 제약이라는 점에 맞춰 설계했습니다. 레퍼런스 1080×1920에 폭 기준 스케일, 상단바·하단 UI는 Safe Area에 앵커, 카메라 가로 월드폭 10유닛 고정, 공간이 좁은 기기에서는 슬라임을 자동 축소해 겹침을 막습니다. 9:16~9:21 폰과 노치·펀치홀, 3:4 태블릿까지 커버합니다.</p>
+<h2 id="기술">기술</h2>
+<p>Unity 6(6000.3), URP, New Input System. PC는 마우스, 모바일은 멀티터치.</p>
+</div><aside class="detail-aside"><p class="mono">요약</p><p class="aside-summary">72개 경계점을 스프링으로 묶은 소프트바디 슬라임 6종. 오디오 파일 없이 런타임에 합성하는 절차적 ASMR 사운드, 외부 에셋 0개, 씬 편집 없이 코드로 부트스트랩.</p><ul class="aside-list"><li>슬라임 6종: 색·광택·점성·사운드가 전부 다름</li><li>절차적 사운드: 크런치는 노이즈 그레인, 젤리는 물방울 사인 스윕</li><li>9:16~9:21 폰과 3:4 태블릿까지 Safe Area·폭 기준 스케일로 대응</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="닫기">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/projects/girlsxzombies/"><span class="mono">← 이전</span><b>girlsXzombies</b></a><a class="right" href="/projects/seongjuclaw/"><span class="mono">다음 →</span><b>성주클루</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 강성주</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume.pdf" target="_blank" rel="noopener">이력서 PDF</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

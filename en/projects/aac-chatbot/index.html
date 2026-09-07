@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>University AAC Chatbot Backend (Python · RAG · OCR) · Seongju Kang</title><meta name="description" content="Designed and shipped plan-based limits and a rate-limit engine for an inherited chatbot"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/en/projects/aac-chatbot/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/aac-chatbot/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/aac-chatbot/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="University AAC Chatbot Backend (Python · RAG · OCR) · Seongju Kang"><meta property="og:description" content="Designed and shipped plan-based limits and a rate-limit engine for an inherited chatbot"><meta property="og:url" content="https://paka9999.github.io/en/projects/aac-chatbot/"><meta property="og:image" content="https://paka9999.github.io/images/work/aac.jpg"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/en/">Seongju Kang</a><nav class="nav-links" aria-label="Sections"><a href="/en/#reel">Screens</a><a href="/en/#press">Awards</a><a href="/en/#strengths">Strengths</a><a href="/en/#experience">Work</a><a href="/en/#ai">AI</a><a href="/en/#projects">Personal</a><a href="/en/timeline/">Timeline</a></nav><div class="nav-actions"><a class="lang" href="/projects/aac-chatbot/" hreflang="ko" aria-label="한국어" title="한국어">KO</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/en/#experience">← Home</a><header class="detail-head"><p class="mono eyebrow">2026 · work</p><h1>University AAC Chatbot Backend<small>Python · RAG · OCR</small></h1><p class="lead">Designed and shipped plan-based limits and a rate-limit engine for an inherited chatbot</p><dl class="meta"><div><dt class="mono">Role</dt><dd>Backend development and deployment</dd></div><div><dt class="mono">Period</dt><dd>2026.06</dd></div><div><dt class="mono">Status</dt><dd>In production</dd></div><div><dt class="mono">Stack</dt><dd>Python, Node.js, RAG, ECR, EC2</dd></div></dl></header><div class="gallery n1"><figure><button type="button" class="zoom" aria-label="University AAC Chatbot Backend click to enlarge"><img src="/images/work/aac.jpg" alt="University AAC Chatbot Backend" loading="eager" decoding="async"></button></figure></div><div class="detail-grid"><div class="prose"><h2 id="context">Context</h2>
+<p>I inherited the backend of a university’s AAC (augmentative and alternative communication) chatbot: a Node frontend and a Python RAG API deployed separately on EC2.</p>
+<h2 id="what-i-built">What I built</h2>
+<ul>
+<li><strong>Plan engine</strong>: Basic/Plus/Premium monthly limits plus rate limiting. Chat and OCR are counted separately; OCR is blocked with <code>plan.consume</code> right before the Vision call.</li>
+<li>Direct RAG calls blocked (internal secret header), a real OpenAI check in /health, hydration errors and chat quota reflected in the frontend.</li>
+<li>26 tests (vitest), pinned requirements.</li>
+</ul>
+<h2 id="deployment">Deployment</h2>
+<p>With CI billing blocked, I set up a manual SSH deployment: the frontend as an amd64 ECR build with a container swap, the RAG API as a native EC2 build.</p>
+<h2 id="handed-over">Handed over</h2>
+<p>From a security audit: stored XSS in notices (HIGH), unauthenticated usage logs, CORS and login rate limiting, a JWT fallback: documented as follow-ups.</p>
+</div><aside class="detail-aside"><p class="mono">Summary</p><p class="aside-summary">Took over the backend of an AAC (augmentative and alternative communication) chatbot, added Basic/Plus/Premium plans with monthly limits and rate limiting, and blocked direct calls to the internal RAG API. Set up manual deployment while CI was down and surfaced security-audit follow-ups.</p><ul class="aside-list"><li>Basic/Plus/Premium plan limits, OCR quota, direct RAG call blocking</li><li>Manual SSH deployment: frontend via ECR build and container swap, RAG API via native EC2 build</li><li>Security audit: stored XSS in notices (HIGH), unauthenticated usage logs, CORS and login rate-limit follow-ups</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="Close">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/en/projects/blog/"><span class="mono">← Previous</span><b>YATAV Company Blog</b></a><a class="right" href="/en/projects/nice-s2s/"><span class="mono">Next →</span><b>NICE Identity Verification S2S Migration</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 Seongju Kang</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume-en.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

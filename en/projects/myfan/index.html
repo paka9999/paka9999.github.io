@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>myfan · Seongju Kang</title><meta name="description" content="Reverse-engineering a BLE circulator protocol"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/en/projects/myfan/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/myfan/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/myfan/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="myfan · Seongju Kang"><meta property="og:description" content="Reverse-engineering a BLE circulator protocol"><meta property="og:url" content="https://paka9999.github.io/en/projects/myfan/"><meta property="og:image" content="https://paka9999.github.io/og.png"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/en/">Seongju Kang</a><nav class="nav-links" aria-label="Sections"><a href="/en/#reel">Screens</a><a href="/en/#press">Awards</a><a href="/en/#strengths">Strengths</a><a href="/en/#experience">Work</a><a href="/en/#ai">AI</a><a href="/en/#projects">Personal</a><a href="/en/timeline/">Timeline</a></nav><div class="nav-actions"><a class="lang" href="/projects/myfan/" hreflang="ko" aria-label="한국어" title="한국어">KO</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/en/#projects">← Home</a><header class="detail-head"><p class="mono eyebrow">2026 · personal · private</p><h1>myfan</h1><p class="lead">Reverse-engineering a BLE circulator protocol</p><dl class="meta"><div><dt class="mono">Role</dt><dd>Analysis and implementation</dd></div><div><dt class="mono">Period</dt><dd>2026.08</dd></div><div><dt class="mono">Status</dt><dd>Decoded · replacement app in use</dd></div><div><dt class="mono">Stack</dt><dd>Kotlin, Android, BLE, Reverse Engineering, Python</dd></div><div><dt class="mono">Links</dt><dd class="dd-links"><a href="https://github.com/paka9999/myfan" target="_blank" rel="noopener">GitHub</a></dd></div></dl></header><div class="detail-grid"><div class="prose"><h2 id="why">Why</h2>
+<p>The LZEF-DC290 BLDC circulator can only be controlled from the vendor app, which is heavy and has no widgets. For interoperability with my own device I decoded the protocol and built a replacement. The vendor app is neither copied nor distributed.</p>
+<h2 id="findings">Findings</h2>
+<ul>
+<li><strong>Broadcast, not connection</strong>: The vendor app never connects or scans. It puts the command in the manufacturer data (0xFFF0) of an advertising packet, broadcasts for about 200 ms, and stops. The fan only listens, so a BLE scanner will never find it.</li>
+<li><strong>Frame layout</strong>: Of a 33-byte plaintext only the last 18 bytes are sent: sync 3 · address 5 · header 2 · command 1 · device id 4 · checksum 1 · CRC16 2.</li>
+<li><strong>Two-stage whitening</strong>: The standard BLE LFSR (x⁷+x⁴+1) is applied twice with seeds 63 and 37. Both seeds are constant, so the whole thing collapses to <strong>a single XOR with a fixed mask</strong>. Encoding and decoding are the same operation.</li>
+<li><strong>Non-standard CRC16</strong>: poly 0x1021, init 0xFFFF, but the address goes in reversed and the payload bit-inverted. That is why 560 parameter combinations in the first analysis all missed.</li>
+<li><strong>The “session nonce” was not a nonce</strong>: The 4 bytes that changed between app launches were a <strong>device id the app generates at random</strong>; they changed because another device had been added and removed in between. No randomness, no session: the same (command, device id) is always the same 18 bytes.</li>
+<li><strong>Delete is a broadcast</strong>: cmdType 15 ignores the device id and reaches every device in range. The replacement app leaves it out.</li>
+</ul>
+<h2 id="verification">Verification</h2>
+<p>All 63 captured frames re-encode to identical bytes. The encoder is Python (tools/rf297l.py); the Android side has unit tests that compare against real captured frames.</p>
+<h2 id="replacement-app">Replacement app</h2>
+<p>Kotlin, three dependencies, a single BLUETOOTH_ADVERTISE permission. One <code>BluetoothLeAdvertiser.startAdvertising()</code> is all it takes: no connecting, pairing, reconnecting or GATT cache. Five home-screen widgets (single command, power toggle, fan speed, power + speed, and more). R8 is off because it can strip methods the widget provider calls by name.</p>
+</div><aside class="detail-aside"><p class="mono">Summary</p><p class="aside-summary">Fully decoded the BLE protocol of a BLDC circulator to control it without the vendor app. Discovered the device is “broadcast-style”: it takes commands from manufacturer data in advertising packets rather than a GATT connection: and built a replacement app with one permission, three dependencies and five home-screen widgets.</p><ul class="aside-list"><li>Two-stage whitening and a non-standard CRC16 cracked via APK static analysis; all 63 captured frames round-trip</li><li>Proved there is no nonce or session: the same (command, device id) is always the same 18 bytes</li><li>One BluetoothLeAdvertiser call does the job; unit tests compare against real captures</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="Close">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/en/projects/remotedesk/"><span class="mono">← Previous</span><b>RemoteDesk</b></a><a class="right" href="/en/projects/manna/"><span class="mono">Next →</span><b>Manna</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 Seongju Kang</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume-en.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

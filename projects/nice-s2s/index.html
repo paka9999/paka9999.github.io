@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NICE 본인확인 S2S 전환 (인증 API 마이그레이션) · 강성주</title><meta name="description" content="본인확인 연동을 신규 통합인증 S2S API로 전환해 운영 배포했습니다"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/projects/nice-s2s/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/nice-s2s/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/nice-s2s/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="NICE 본인확인 S2S 전환 (인증 API 마이그레이션) · 강성주"><meta property="og:description" content="본인확인 연동을 신규 통합인증 S2S API로 전환해 운영 배포했습니다"><meta property="og:url" content="https://paka9999.github.io/projects/nice-s2s/"><meta property="og:image" content="https://paka9999.github.io/images/work/nice.jpg"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/">강성주</a><nav class="nav-links" aria-label="Sections"><a href="/#reel">화면</a><a href="/#press">수상</a><a href="/#strengths">강점</a><a href="/#experience">참여 프로젝트</a><a href="/#ai">AI 활용</a><a href="/#projects">개인</a><a href="/timeline/">연혁</a></nav><div class="nav-actions"><a class="lang" href="/en/projects/nice-s2s/" hreflang="en" aria-label="English" title="English">EN</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/#experience">← 홈으로</a><header class="detail-head"><p class="mono eyebrow">2026 · 회사</p><h1>NICE 본인확인 S2S 전환<small>인증 API 마이그레이션</small></h1><p class="lead">본인확인 연동을 신규 통합인증 S2S API로 전환해 운영 배포했습니다</p><dl class="meta"><div><dt class="mono">역할</dt><dd>백엔드 개발</dd></div><div><dt class="mono">기간</dt><dd>2026.05</dd></div><div><dt class="mono">상태</dt><dd>운영 전환 완료</dd></div><div><dt class="mono">스택</dt><dd>Node.js, PBKDF2, AES-GCM, NICE API</dd></div></dl></header><div class="gallery n1"><figure><button type="button" class="zoom" aria-label="NICE 본인확인 S2S 전환 확대해서 보기"><img src="/images/work/nice.jpg" alt="NICE 본인확인 S2S 전환" loading="eager" decoding="async"></button></figure></div><div class="detail-grid"><div class="prose"><h2 id="만든-것">만든 것</h2>
+<p>NICE 본인확인 신규 통합인증 S2S API 전환입니다. 액세스 토큰 발급, 암호화 토큰 요청, PBKDF2 기반 키 유도, AES-GCM 요청 암호화와 응답 복호화·무결성 검증까지의 흐름을 구현했습니다.</p>
+<h2 id="함정">함정</h2>
+<p>규격 문서와 실제 동작이 다른 지점(키 유도 입력, 인코딩, 태그 처리)을 하나씩 실측으로 맞췄고, 다음 사람이 같은 시행착오를 겪지 않도록 기록으로 남겼습니다.</p>
+<h2 id="상태">상태</h2>
+<p>2026-05-08 운영 전환 완료, 5월 12일 후속 수정을 운영에 배포했습니다.</p>
+</div><aside class="detail-aside"><p class="mono">요약</p><p class="aside-summary">기존 본인확인 연동을 NICE 신규 통합인증 S2S API로 옮겼습니다. 토큰 발급부터 PBKDF2 + AES-GCM 기반 요청 암호화·응답 복호화까지 구현하고, 규격 문서와 실제 동작이 달랐던 지점을 실측으로 맞춰 기록했습니다.</p><ul class="aside-list"><li>PBKDF2 + AES-GCM 흐름 구현</li><li>규격 문서와 실제 동작이 다른 지점을 실측으로 정리</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="닫기">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/projects/aac-chatbot/"><span class="mono">← 이전</span><b>대학 AAC 챗봇 백엔드</b></a><span></span></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 강성주</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume.pdf" target="_blank" rel="noopener">이력서 PDF</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

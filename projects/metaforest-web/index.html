@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MetaForest 웹·백엔드 (Node.js · MySQL · AWS) · 강성주</title><meta name="description" content="예약·딥링크·기관 관리 등 실사용자 장애를 원인까지 추적해 고쳤습니다"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/projects/metaforest-web/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/metaforest-web/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/metaforest-web/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="MetaForest 웹·백엔드 (Node.js · MySQL · AWS) · 강성주"><meta property="og:description" content="예약·딥링크·기관 관리 등 실사용자 장애를 원인까지 추적해 고쳤습니다"><meta property="og:url" content="https://paka9999.github.io/projects/metaforest-web/"><meta property="og:image" content="https://paka9999.github.io/images/work/metaforest-web.jpg"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/">강성주</a><nav class="nav-links" aria-label="Sections"><a href="/#reel">화면</a><a href="/#press">수상</a><a href="/#strengths">강점</a><a href="/#experience">참여 프로젝트</a><a href="/#ai">AI 활용</a><a href="/#projects">개인</a><a href="/timeline/">연혁</a></nav><div class="nav-actions"><a class="lang" href="/en/projects/metaforest-web/" hreflang="en" aria-label="English" title="English">EN</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/#experience">← 홈으로</a><header class="detail-head"><p class="mono eyebrow">2026 · 회사</p><h1>MetaForest 웹·백엔드<small>Node.js · MySQL · AWS</small></h1><p class="lead">예약·딥링크·기관 관리 등 실사용자 장애를 원인까지 추적해 고쳤습니다</p><dl class="meta"><div><dt class="mono">역할</dt><dd>백엔드·웹 개발</dd></div><div><dt class="mono">기간</dt><dd>2026.05 – 2026.07</dd></div><div><dt class="mono">상태</dt><dd>운영 중</dd></div><div><dt class="mono">스택</dt><dd>Node.js, MySQL, Docker, nginx, AWS</dd></div><div><dt class="mono">링크</dt><dd class="dd-links"><a href="https://www.metaforest.us" target="_blank" rel="noopener">metaforest.us</a></dd></div></dl></header><div class="gallery n2"><figure><button type="button" class="zoom" aria-label="웹사이트 확대해서 보기"><img src="/images/work/metaforest-web.jpg" alt="웹사이트" loading="eager" decoding="async"></button><figcaption>metaforest.us 메인</figcaption></figure><figure><button type="button" class="zoom" aria-label="다운로드 페이지 확대해서 보기"><img src="/images/work/metaforest-devices.jpg" alt="다운로드 페이지" loading="eager" decoding="async"></button><figcaption>다운로드 페이지. 스토어 4종과 런처 다운로드 목록</figcaption></figure></div><div class="detail-grid"><div class="prose"><h2 id="배경">배경</h2>
+<p>MetaForest 웹(예약·기관 관리·상담 기록)과 Node.js 백엔드입니다. 단일 EC2에 dev/prod 컨테이너로 올라갑니다.</p>
+<h2 id="딥링크-입장-링크-만료-장애">딥링크 입장 링크 만료 장애</h2>
+<p>상담 일정을 변경하면 새 토큰이 발급되지만 옛 토큰의 만료가 따라가지 않아, 예약 문자에 이미 삭제된 토큰이 실려 나갔습니다. 일정 변경 경로에서 토큰 만료를 함께 갱신하도록 고치고, 배포본을 직접 실행해 검증한 뒤 운영에 반영했습니다.</p>
+<h2 id="컬럼-하나가-만든-세-가지-증상">컬럼 하나가 만든 세 가지 증상</h2>
+<p>AI 상담이 “비활성화”로 보이고, SNS 로그인이 튕기고, 기본 기관이 잘못 표시되는 세 가지 신고가 따로 들어왔는데 원인은 전부 레거시 <code>users.partnerId</code>였습니다. 코드를 고치고 데이터 72명을 전수 교정했습니다. 죽은 조건(<code>|| 상수</code>)은 되살리면 깨져서 제거만 했습니다. 회귀 0을 실측했습니다.</p>
+<h2 id="예약-화면-버그-4건">예약 화면 버그 4건</h2>
+<p>PC 날짜 달력(<code>.dateArrow</code> pointer-events), 채팅 링크 다중 기관 LNB(세션 복구 회귀), 날짜칸 autocomplete, 모바일 예약 기관 select 미채움. 처음엔 세션 복구 회귀로 짚었지만 실제 핵심은 예약 모달 select 미채움이었습니다. 오진단을 기록으로 남겼습니다.</p>
+<h2 id="캐시-정책과-그-밖에">캐시 정책과 그 밖에</h2>
+<ul>
+<li>배포 직후 옛 JS가 보이던 문제를 쿼리 버전(<code>?v=</code>) + html no-cache + js/css 1일 캐시로 정리했습니다. 배포 도구 쪽 PR과 함께 dev·prod 라이브.</li>
+<li>산하 기관 계층 기능(교육청 산하 기관 매핑), Agora webhook 기반 음성 비용 측정 페이지(webhook 중복 세션 레이스 수정 포함).</li>
+</ul>
+</div><aside class="detail-aside"><p class="mono">요약</p><p class="aside-summary">일정 변경 시 입장 링크 토큰 만료가 따라가지 않던 장애, 레거시 컬럼 하나가 만든 세 가지 증상, 예약 화면 버그 4건, 정적 자산 캐시 정책, 산하 기관 계층, Agora 비용 측정 페이지까지.</p><ul class="aside-list"><li>딥링크 토큰 만료 불일치 장애: 배포본을 직접 실행해 검증</li><li>users.partnerId 레거시 값 전수 정리로 신고 3건의 공통 원인 제거</li><li>예약 버그 4건: 처음 짚은 원인(세션 복구 회귀)이 아니라 예약 모달 select 미채움이 핵심이었음</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="닫기">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/projects/metaforest-unity/"><span class="mono">← 이전</span><b>MetaForest Unity 클라이언트</b></a><a class="right" href="/projects/aegis/"><span class="mono">다음 →</span><b>AEGIS: AI 보안 게이트웨이 (AI DLP)</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 강성주</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume.pdf" target="_blank" rel="noopener">이력서 PDF</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>discord-meeting-bot · Seongju Kang</title><meta name="description" content="Automatic recording, transcription and summaries for Discord meetings"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/en/projects/discord-meeting-bot/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/discord-meeting-bot/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/discord-meeting-bot/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="discord-meeting-bot · Seongju Kang"><meta property="og:description" content="Automatic recording, transcription and summaries for Discord meetings"><meta property="og:url" content="https://paka9999.github.io/en/projects/discord-meeting-bot/"><meta property="og:image" content="https://paka9999.github.io/og.png"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/en/">Seongju Kang</a><nav class="nav-links" aria-label="Sections"><a href="/en/#reel">Screens</a><a href="/en/#press">Awards</a><a href="/en/#strengths">Strengths</a><a href="/en/#experience">Work</a><a href="/en/#ai">AI</a><a href="/en/#projects">Personal</a><a href="/en/timeline/">Timeline</a></nav><div class="nav-actions"><a class="lang" href="/projects/discord-meeting-bot/" hreflang="ko" aria-label="한국어" title="한국어">KO</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/en/#projects">← Home</a><header class="detail-head"><p class="mono eyebrow">2026 · personal · private</p><h1>discord-meeting-bot</h1><p class="lead">Automatic recording, transcription and summaries for Discord meetings</p><dl class="meta"><div><dt class="mono">Role</dt><dd>Design and implementation</dd></div><div><dt class="mono">Period</dt><dd>2026.07 – 2026.08</dd></div><div><dt class="mono">Status</dt><dd>In use</dd></div><div><dt class="mono">Stack</dt><dd>TypeScript, discord.js, Whisper, Claude API</dd></div><div><dt class="mono">Links</dt><dd class="dd-links"><a href="https://github.com/paka9999/discord-meeting-bot" target="_blank" rel="noopener">GitHub</a></dd></div></dl></header><div class="detail-grid"><div class="prose"><h2 id="why">Why</h2>
+<p>Meetings held in a Discord voice channel leave nothing behind. This bot records when people arrive and writes the minutes when they leave.</p>
+<h2 id="how-it-works">How it works</h2>
+<ol>
+<li><code>/watch add &lt;voice channel&gt;</code> registers a channel. When someone joins, the bot joins and starts recording; when everyone leaves, it stops.</li>
+<li>Audio is received as one stream per participant, so speaker separation comes for free. opus is stored as OGG without re-encoding.</li>
+<li>Whisper transcribes; Claude extracts a summary, decisions and action items.</li>
+<li>The summary embed and the minutes/transcript files are posted to the text channel, and optionally committed to a GitHub repository as <code>meetings/YYYY/MM/*.md</code> through the Contents API: no clone needed.</li>
+</ol>
+<h2 id="stack">Stack</h2>
+<p>Node.js 22 + TypeScript, discord.js v14 + @discordjs/voice, prism-media v2. No privileged intents; STT and summary models are configured via environment variables.</p>
+<h2 id="status">Status</h2>
+<p>In use, together with a repository (meeting-notes) that receives the minutes automatically.</p>
+</div><aside class="detail-aside"><p class="mono">Summary</p><p class="aside-summary">Joins a voice channel when someone enters, records per-speaker streams, transcribes with Whisper, extracts a summary, decisions and action items with Claude, then posts to the channel and commits minutes to a GitHub repository.</p><ul class="aside-list"><li>Per-participant audio streams make speaker separation free</li><li>opus stored as OGG without re-encoding; commits via the GitHub Contents API, no clone</li><li>STT and summary models are swapped via environment variables</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="Close">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/en/projects/shorts-factory/"><span class="mono">← Previous</span><b>shorts-factory</b></a><a class="right" href="/en/projects/remotedesk/"><span class="mono">Next →</span><b>RemoteDesk</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 Seongju Kang</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume-en.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

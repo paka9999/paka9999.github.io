@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>myfan · 강성주</title><meta name="description" content="BLE 서큘레이터 프로토콜 리버스 엔지니어링"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/projects/myfan/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/myfan/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/myfan/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="myfan · 강성주"><meta property="og:description" content="BLE 서큘레이터 프로토콜 리버스 엔지니어링"><meta property="og:url" content="https://paka9999.github.io/projects/myfan/"><meta property="og:image" content="https://paka9999.github.io/og.png"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/">강성주</a><nav class="nav-links" aria-label="Sections"><a href="/#reel">화면</a><a href="/#press">수상</a><a href="/#strengths">강점</a><a href="/#experience">참여 프로젝트</a><a href="/#ai">AI 활용</a><a href="/#projects">개인</a><a href="/timeline/">연혁</a></nav><div class="nav-actions"><a class="lang" href="/en/projects/myfan/" hreflang="en" aria-label="English" title="English">EN</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/#projects">← 홈으로</a><header class="detail-head"><p class="mono eyebrow">2026 · 개인 · 비공개</p><h1>myfan</h1><p class="lead">BLE 서큘레이터 프로토콜 리버스 엔지니어링</p><dl class="meta"><div><dt class="mono">역할</dt><dd>분석·구현 전부</dd></div><div><dt class="mono">기간</dt><dd>2026.08</dd></div><div><dt class="mono">상태</dt><dd>해독 완료 · 대체 앱 사용 중</dd></div><div><dt class="mono">스택</dt><dd>Kotlin, Android, BLE, Reverse Engineering, Python</dd></div><div><dt class="mono">링크</dt><dd class="dd-links"><a href="https://github.com/paka9999/myfan" target="_blank" rel="noopener">GitHub</a></dd></div></dl></header><div class="detail-grid"><div class="prose"><h2 id="배경">배경</h2>
+<p>르젠 BLDC 서큘레이터 LZEF-DC290은 순정 앱으로만 조작됩니다. 앱이 무겁고 위젯도 없어서, 본인 소유 기기와의 상호운용을 목적으로 프로토콜을 해독하고 대체 앱을 만들었습니다. 순정 앱을 복제하거나 배포하지 않습니다.</p>
+<h2 id="밝혀낸-것">밝혀낸 것</h2>
+<ul>
+<li><strong>접속형이 아니라 브로드캐스트형</strong>: 순정 앱은 BLE 연결도 스캔도 하지 않습니다. 명령을 광고 패킷의 제조사 데이터(0xFFF0)에 실어 약 200ms 뿌리고 끝냅니다. 선풍기는 듣기만 하므로 BLE 스캐너로는 영원히 찾을 수 없습니다.</li>
+<li><strong>프레임 구조</strong>: 평문 33바이트 중 뒤 18바이트만 전송: sync 3 · 주소 5 · 헤더 2 · 명령 1 · 기기 ID 4 · 체크섬 1 · CRC16 2.</li>
+<li><strong>화이트닝 2단</strong>: BLE 표준 LFSR(x⁷+x⁴+1)을 시드 63과 37로 두 번 거는데, 두 시드가 상수라 결국 <strong>고정 마스크 한 번의 XOR</strong>로 축약됩니다. 인코딩과 디코딩이 같은 연산입니다.</li>
+<li><strong>비표준 CRC16</strong>: poly 0x1021·init 0xFFFF이지만 주소는 역순, 페이로드는 비트반전해서 넣습니다. 1차 분석에서 560가지 파라미터 조합을 전수 대입했는데 전부 빗나간 이유였습니다.</li>
+<li><strong>“세션 논스”는 논스가 아니었다</strong>: 앱을 껐다 켤 때마다 바뀌던 4바이트는 앱이 난수로 만든 <strong>기기 ID</strong>였습니다. 그 사이에 다른 기기를 등록하고 지웠기 때문에 바뀐 것이었습니다. 난수도 세션도 없어서 같은 (명령, 기기 ID)는 항상 같은 18바이트입니다.</li>
+<li><strong>기기 삭제는 브로드캐스트</strong>: cmdType 15는 기기 ID를 무시하고 전파가 닿는 모든 기기에 갑니다. 대체 앱에서는 넣지 않았습니다.</li>
+</ul>
+<h2 id="검증">검증</h2>
+<p>캡처한 63프레임 전부 재인코딩 왕복 일치. 인코더는 Python(tools/rf297l.py), 안드로이드 쪽은 실제 캡처 프레임과 대조하는 단위 테스트로 검증합니다.</p>
+<h2 id="대체-앱">대체 앱</h2>
+<p>Kotlin, 의존성 3개, 권한은 BLUETOOTH_ADVERTISE 하나. <code>BluetoothLeAdvertiser.startAdvertising()</code> 한 번이면 끝이라 연결·페어링·재연결·GATT 캐시가 전부 필요 없습니다. 홈화면 위젯 5종(명령 하나 · 전원 토글 · 풍량 · 전원+풍량 등). R8은 위젯 프로바이더가 이름으로 부르는 메서드를 지울 수 있어 껐습니다.</p>
+</div><aside class="detail-aside"><p class="mono">요약</p><p class="aside-summary">순정 앱 없이 BLDC 서큘레이터를 조작하기 위해 BLE 프로토콜을 완전히 해독했습니다. 이 기기는 GATT 연결이 아니라 광고 패킷의 제조사 데이터로 명령을 받는 “브로드캐스트형”이라는 것을 밝혀냈고, 권한 하나·의존성 3개짜리 대체 앱과 홈화면 위젯 5종을 만들었습니다.</p><ul class="aside-list"><li>2단 화이트닝 + 비표준 CRC16을 APK 정적 분석으로 풀어 캡처 63프레임 전부 왕복 일치</li><li>난수·세션 없음을 증명 → 같은 (명령, 기기 ID)는 항상 같은 18바이트</li><li>BluetoothLeAdvertiser 한 번으로 끝나는 구현, 실제 캡처와 대조하는 단위 테스트</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="닫기">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/projects/remotedesk/"><span class="mono">← 이전</span><b>RemoteDesk</b></a><a class="right" href="/projects/manna/"><span class="mono">다음 →</span><b>만나</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 강성주</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume.pdf" target="_blank" rel="noopener">이력서 PDF</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

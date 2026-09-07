@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>클라우드 비용 절감 · 비용 대시보드 (AWS · NCloud · Python) · 강성주</title><meta name="description" content="계정에 실제로 무엇이 떠 있는지 실측하고, 비용을 매일 한 화면에서 보게 했습니다"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/projects/cost-dashboard/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/cost-dashboard/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/cost-dashboard/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="클라우드 비용 절감 · 비용 대시보드 (AWS · NCloud · Python) · 강성주"><meta property="og:description" content="계정에 실제로 무엇이 떠 있는지 실측하고, 비용을 매일 한 화면에서 보게 했습니다"><meta property="og:url" content="https://paka9999.github.io/projects/cost-dashboard/"><meta property="og:image" content="https://paka9999.github.io/images/work/cost.jpg"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/">강성주</a><nav class="nav-links" aria-label="Sections"><a href="/#reel">화면</a><a href="/#press">수상</a><a href="/#strengths">강점</a><a href="/#experience">참여 프로젝트</a><a href="/#ai">AI 활용</a><a href="/#projects">개인</a><a href="/timeline/">연혁</a></nav><div class="nav-actions"><a class="lang" href="/en/projects/cost-dashboard/" hreflang="en" aria-label="English" title="English">EN</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/#experience">← 홈으로</a><header class="detail-head"><p class="mono eyebrow">2026 · 회사</p><h1>클라우드 비용 절감 · 비용 대시보드<small>AWS · NCloud · Python</small></h1><p class="lead">계정에 실제로 무엇이 떠 있는지 실측하고, 비용을 매일 한 화면에서 보게 했습니다</p><dl class="meta"><div><dt class="mono">역할</dt><dd>조사·구현·운영 전부</dd></div><div><dt class="mono">기간</dt><dd>2026.06 – 2026.09</dd></div><div><dt class="mono">상태</dt><dd>운영 중</dd></div><div><dt class="mono">스택</dt><dd>AWS, NCloud, Python, launchd, Cost Explorer</dd></div></dl></header><div class="gallery n1"><figure><button type="button" class="zoom" aria-label="클라우드 비용 절감 · 비용 대시보드 확대해서 보기"><img src="/images/work/cost.jpg" alt="클라우드 비용 절감 · 비용 대시보드" loading="eager" decoding="async"></button></figure></div><div class="detail-grid"><div class="prose"><h2 id="인벤토리-실측과-폐기-202606">인벤토리 실측과 폐기 (2026.06)</h2>
+<ul>
+<li>계정에 실제로 있는 것은 EC2 2대, RDS 2대, ALB 1대, ECS 0개였습니다. 문서와 달랐습니다.</li>
+<li>인증 시험용으로 만들었다가 방치된 환경을 6월 30일에 폐기해 월 비용을 64% 줄였습니다.</li>
+<li>8월 청구 급등의 단일 원인이 RDS MySQL 8.0 Extended Support 자동 과금임을 찾아, 8.4 업그레이드로 해소하는 안을 정리했습니다.</li>
+</ul>
+<h2 id="비용-대시보드-202608">비용 대시보드 (2026.08)</h2>
+<ul>
+<li>하이브리드 설계: 자동 수집 5개(OpenAI·Anthropic·AWS·NCloud·GitHub) + 수동 입력.</li>
+<li>매일 08:10 launchd로 수집·배포합니다. 날짜는 전부 한 시계(<code>today_utc()</code>)로 통일했습니다. 로컬과 UTC가 섞인 캐시 키 버그를 9월에 잡은 뒤 세운 규칙입니다.</li>
+<li>NCloud는 미결제 이월분이 포함되는 필드 대신 당월 금액 필드를 써야 이중 계상이 없습니다.</li>
+</ul>
+<h2 id="절감-검토-202609">절감 검토 (2026.09)</h2>
+<p>RDS 8.4, Savings Plan, 연간 전환, 인스턴스 세대 교체, ECR, Agora까지 확정 절감안과, 결정이 필요한 항목(중복 SaaS 좌석 등)을 나눠 정리해 보고했습니다.</p>
+</div><aside class="detail-aside"><p class="mono">요약</p><p class="aside-summary">AWS 인벤토리를 실측해 방치된 인증 시험용 환경을 폐기하고 월 인프라 비용을 64% 줄였습니다. OpenAI·Anthropic·AWS·NCloud·GitHub 비용을 자동 수집하는 대시보드를 만들어 매일 아침 자동 배포합니다.</p><ul class="aside-list"><li>AWS 유휴 환경 폐기: 월 인프라 비용 64% 절감</li><li>5개 소스(OpenAI·Anthropic·AWS·NCloud·GitHub) 자동 수집, 매일 08:10 자동 배포</li><li>8월 청구 급등 = RDS MySQL 8.0 Extended Support 자동 과금: 8.4 업그레이드로 해소안</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="닫기">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/projects/dokrip/"><span class="mono">← 이전</span><b>독립지능: 폐쇄망 업무용 AI</b></a><a class="right" href="/projects/blog/"><span class="mono">다음 →</span><b>YATAV 기업 블로그</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 강성주</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume.pdf" target="_blank" rel="noopener">이력서 PDF</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>easyweb · 강성주</title><meta name="description" content="어르신용 웹 도우미"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/projects/easyweb/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/easyweb/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/easyweb/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="easyweb · 강성주"><meta property="og:description" content="어르신용 웹 도우미"><meta property="og:url" content="https://paka9999.github.io/projects/easyweb/"><meta property="og:image" content="https://paka9999.github.io/og.png"><meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/">강성주</a><nav class="nav-links" aria-label="Sections"><a href="/#reel">화면</a><a href="/#press">수상</a><a href="/#strengths">강점</a><a href="/#experience">참여 프로젝트</a><a href="/#ai">AI 활용</a><a href="/#projects">개인</a><a href="/timeline/">연혁</a></nav><div class="nav-actions"><a class="lang" href="/en/projects/easyweb/" hreflang="en" aria-label="English" title="English">EN</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/#projects">← 홈으로</a><header class="detail-head"><p class="mono eyebrow">2026 · 개인 · 비공개</p><h1>easyweb</h1><p class="lead">어르신용 웹 도우미</p><dl class="meta"><div><dt class="mono">역할</dt><dd>설계·구현 전부</dd></div><div><dt class="mono">기간</dt><dd>2026.07</dd></div><div><dt class="mono">상태</dt><dd>개인용 · 레시피 1종 동작</dd></div><div><dt class="mono">스택</dt><dd>Electron, JavaScript</dd></div><div><dt class="mono">링크</dt><dd class="dd-links"><a href="https://github.com/paka9999/easyweb" target="_blank" rel="noopener">GitHub</a></dd></div></dl></header><div class="detail-grid"><div class="prose"><h2 id="배경">배경</h2>
+<p>회원가입·글쓰기처럼 입력칸이 많은 화면은 어르신에게 벽입니다. 사이트를 숨기지 않고 그대로 보여주면서, 왼쪽의 큰 글씨 폼 하나로 대신 채워주는 Electron 앱을 만들었습니다. 배포용이 아니라 본인 계정으로 본인이 쓰는 보조 도구입니다.</p>
+<h2 id="설계상-지킨-것">설계상 지킨 것</h2>
+<ul>
+<li><strong>최종 제출은 사람이 누릅니다.</strong> 가입 완료·글 등록처럼 되돌리기 어려운 버튼은 <code>handoff</code> 단계로 두고, 앱은 그 버튼을 주황색으로 표시만 합니다. 잘못 올라간 글을 되돌리는 게 훨씬 어렵습니다.</li>
+<li><strong>캡차·본인인증·약관 동의는 자동화하지 않습니다.</strong> 전부 사람에게 넘깁니다.</li>
+<li><strong>비밀번호는 평문으로 두지 않습니다.</strong> safeStorage(Windows에서는 DPAPI)로 암호화해 저장하고, 암호화를 못 쓰는 환경이면 저장을 거부합니다. 진행 로그에도 마스킹됩니다.</li>
+<li><strong>레시피는 코드 밖에 있습니다.</strong> 사이트가 개편되면 JSON만 고칩니다.</li>
+<li><strong>실패하면 그 순간 화면을 캡처합니다.</strong> “○○ 단계에서 멈췄어요” + 화면 보기 버튼.</li>
+</ul>
+<h2 id="구조">구조</h2>
+<p>왼쪽 460px 조작 패널(큰 글씨 폼)과 오른쪽 실제 사이트(WebContentsView). <code>main/automation.js</code>가 레시피 실행 엔진이고, 레시피는 <code>recipes/*.json</code> 또는 사용자 폴더에서 읽습니다.</p>
+<h2 id="상태">상태</h2>
+<p>실제로 동작하는 레시피는 그누보드 기반 커뮤니티 가입 1종입니다. 약관 → 입력 두 단계에서 약관·캡차·최종 제출은 사람에게 넘깁니다.</p>
+</div><aside class="detail-aside"><p class="mono">요약</p><p class="aside-summary">입력칸이 많은 화면을 큰 글씨 폼 하나로 대신 채워주는 Electron 앱. 최종 제출·캡차·본인인증은 사람에게 넘기고, 비밀번호는 OS 키체인(safeStorage)으로만 보관. 사이트별 동작은 JSON 레시피.</p><ul class="aside-list"><li>되돌리기 어려운 버튼은 handoff 단계: 앱은 주황색으로 표시만</li><li>캡차·본인인증·약관 동의는 자동화하지 않음</li><li>실패하면 그 순간 화면을 캡처해 &quot;○○ 단계에서 멈췄어요&quot;</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="닫기">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/projects/loveen/"><span class="mono">← 이전</span><b>Loveen</b></a><a class="right" href="/projects/greendot/"><span class="mono">다음 →</span><b>greendot</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 강성주</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume.pdf" target="_blank" rel="noopener">이력서 PDF</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>

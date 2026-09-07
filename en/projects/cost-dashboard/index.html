@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cloud Cost Reduction · Cost Dashboard (AWS · NCloud · Python) · Seongju Kang</title><meta name="description" content="Measured what was actually running in the account, and put every cost on one screen every day"><meta name="author" content="강성주 (Seongju Kang)"><link rel="canonical" href="https://paka9999.github.io/en/projects/cost-dashboard/"><link rel="alternate" hreflang="ko" href="https://paka9999.github.io/projects/cost-dashboard/"><link rel="alternate" hreflang="en" href="https://paka9999.github.io/en/projects/cost-dashboard/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#111113"><meta property="og:type" content="website"><meta property="og:title" content="Cloud Cost Reduction · Cost Dashboard (AWS · NCloud · Python) · Seongju Kang"><meta property="og:description" content="Measured what was actually running in the account, and put every cost on one screen every day"><meta property="og:url" content="https://paka9999.github.io/en/projects/cost-dashboard/"><meta property="og:image" content="https://paka9999.github.io/images/work/cost.jpg"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"><script>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : 'dark');
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script><link rel="stylesheet" href="/_astro/site.BgzLSW_-.css"></head><body><header class="nav" id="nav"><div class="wrap"><a class="brand" href="/en/">Seongju Kang</a><nav class="nav-links" aria-label="Sections"><a href="/en/#reel">Screens</a><a href="/en/#press">Awards</a><a href="/en/#strengths">Strengths</a><a href="/en/#experience">Work</a><a href="/en/#ai">AI</a><a href="/en/#projects">Personal</a><a href="/en/timeline/">Timeline</a></nav><div class="nav-actions"><a class="lang" href="/projects/cost-dashboard/" hreflang="ko" aria-label="한국어" title="한국어">KO</a><button class="icon-btn" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"></path></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button></div></div></header><main><article class="page detail"><div class="wrap"><a class="back" href="/en/#experience">← Home</a><header class="detail-head"><p class="mono eyebrow">2026 · work</p><h1>Cloud Cost Reduction · Cost Dashboard<small>AWS · NCloud · Python</small></h1><p class="lead">Measured what was actually running in the account, and put every cost on one screen every day</p><dl class="meta"><div><dt class="mono">Role</dt><dd>Investigation, implementation, operations</dd></div><div><dt class="mono">Period</dt><dd>2026.06 – 2026.09</dd></div><div><dt class="mono">Status</dt><dd>Operating</dd></div><div><dt class="mono">Stack</dt><dd>AWS, NCloud, Python, launchd, Cost Explorer</dd></div></dl></header><div class="gallery n1"><figure><button type="button" class="zoom" aria-label="Cloud Cost Reduction · Cost Dashboard click to enlarge"><img src="/images/work/cost.jpg" alt="Cloud Cost Reduction · Cost Dashboard" loading="eager" decoding="async"></button></figure></div><div class="detail-grid"><div class="prose"><h2 id="inventory-audit-and-decommissioning-202606">Inventory audit and decommissioning (2026.06)</h2>
+<ul>
+<li>What actually existed in the account: 2 EC2, 2 RDS, 1 ALB, 0 ECS. Not what the documents said.</li>
+<li>An environment built for certification testing and then abandoned was decommissioned on June 30, cutting monthly cost by 64%.</li>
+<li>The single cause of the August bill spike was the automatic RDS MySQL 8.0 Extended Support charge; a plan to resolve it via the 8.4 upgrade was drafted.</li>
+</ul>
+<h2 id="cost-dashboard-202608">Cost dashboard (2026.08)</h2>
+<ul>
+<li>Hybrid design: five automated sources (OpenAI, Anthropic, AWS, NCloud, GitHub) plus manual entries.</li>
+<li>Collected and deployed daily at 08:10 via launchd. Every date comes from one clock (<code>today_utc()</code>), a rule adopted after fixing a cache-key bug in September where local and UTC dates were mixed.</li>
+<li>For NCloud, the current-month amount field must be used instead of the field that includes unpaid carry-over, or costs get double counted.</li>
+</ul>
+<h2 id="savings-review-202609">Savings review (2026.09)</h2>
+<p>Drafted confirmed savings (RDS 8.4, Savings Plan, annual billing, instance generation change, ECR, Agora) separately from items needing a decision (duplicate SaaS seats and the like) and reported them.</p>
+</div><aside class="detail-aside"><p class="mono">Summary</p><p class="aside-summary">Audited the AWS inventory, decommissioned an abandoned certification-test environment and cut monthly infrastructure cost by 64%. Built a dashboard that collects OpenAI, Anthropic, AWS, NCloud and GitHub costs automatically and deploys every morning.</p><ul class="aside-list"><li>Idle AWS environments decommissioned: monthly infrastructure cost down 64%</li><li>Five sources (OpenAI · Anthropic · AWS · NCloud · GitHub) collected automatically, deployed daily at 08:10</li><li>August bill spike = RDS MySQL 8.0 Extended Support auto-charge: resolved via the 8.4 upgrade plan</li></ul></aside></div><div id="lb" class="lb" hidden><button type="button" class="lb-close" aria-label="Close">×</button><img id="lb-img" src="" alt=""><p id="lb-cap" class="lb-cap"></p></div><nav class="pn" aria-label="prev / next"><a href="/en/projects/dokrip/"><span class="mono">← Previous</span><b>Independent Intelligence: Air-gapped Workplace AI</b></a><a class="right" href="/en/projects/blog/"><span class="mono">Next →</span><b>YATAV Company Blog</b></a></nav></div></article><script>
+    (() => {
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+      const img = document.getElementById('lb-img');
+      const cap = document.getElementById('lb-cap');
+      const open = (src, alt, caption) => {
+        img.src = src; img.alt = alt || '';
+        cap.textContent = caption || '';
+        cap.hidden = !caption;
+        lb.hidden = false;
+        document.body.style.overflow = 'hidden';
+        lb.querySelector('.lb-close').focus();
+      };
+      const close = () => {
+        lb.hidden = true; img.src = '';
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.gallery button.zoom').forEach((b) => {
+        b.addEventListener('click', () => {
+          const i = b.querySelector('img');
+          const fc = b.parentElement.querySelector('figcaption');
+          open(i.currentSrc || i.src, i.alt, fc ? fc.textContent : '');
+        });
+      });
+      lb.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lb.hidden) close(); });
+    })();
+  </script></main><footer class="footer"><div class="wrap"><span>© 2026 Seongju Kang</span><span class="foot-links"><a href="https://github.com/paka9999" target="_blank" rel="noopener">github.com/paka9999</a><a href="/resume-en.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></span></div></footer><script type="module">var e=document.documentElement;document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let t=e.getAttribute(`data-theme`)===`light`?`dark`:`light`;e.setAttribute(`data-theme`,t);try{localStorage.setItem(`theme`,t)}catch{}});</script></body></html>
